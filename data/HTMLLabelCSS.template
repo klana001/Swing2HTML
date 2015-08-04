@@ -1,0 +1,4 @@
+.centred-text
+{
+	text-align: center;
+}

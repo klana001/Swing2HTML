@@ -1,0 +1,231 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
+
+
+public class Swing2HTML
+{
+	public static final String RESOURCE_PATH = "data";
+	static int defaultBackground;
+	static int defaultForeground;
+	static FontUIResource defaultFont; 
+	
+	static
+	{
+		defaultBackground=((Color) UIManager.get("Panel.background")).getRGB();
+		defaultForeground=((Color) UIManager.getColor("Label.foreground")).getRGB();
+		defaultFont=((FontUIResource) UIManager.get("Label.font"));
+	}
+	
+	
+	public static void addFudges(Component component)
+	{
+		if (component instanceof JLabel)
+		{
+			component.setSize(component.getWidth()+component.getFont().getSize(),component.getHeight());
+		}
+		else if (component instanceof Container)
+		{
+			for (Component child : ((Container) component).getComponents())
+			{
+				addFudges(child);
+			}
+		}
+			
+	}
+	
+	public static void main(String[] args) throws IOException
+	{
+		// TODO Auto-generated method stub
+		MainPage mainPage = new MainPage();
+		mainPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainPage.setVisible(true);
+		
+		SwingUtilities.invokeLater(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				addFudges(mainPage);
+				String html=HTMLMain.toHtml(mainPage);
+				System.out.println(html);
+				
+				PrintStream ps;
+				try
+				{
+					ps = new PrintStream("data/main2.html");
+					ps.print(html);
+					ps.close();
+				}
+				catch (FileNotFoundException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+		});
+			
+		
+//		String html=HTMLMain.toHtml(mainPage);
+//		System.out.println(html);
+//		
+//		PrintStream ps = new PrintStream("data/main2.html");
+//		ps.print(html);
+//		ps.close();
+//		
+//		JFrame frame = new JFrame();
+//		frame.setBackground(Color.DARK_GRAY);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.add(template);
+//		frame.setVisible(true);
+		
+		
+		
+	}
+
+	static String toHtml(Component component, HashMap<String, CSS> cssEntries,String prefixWhiteSpace)
+	{
+		String html= "UNKNOWN Component: "+component.getClass().getSimpleName();
+		
+		if (component instanceof JFrame )
+		{
+			html=toHtml(((JFrame) component).getContentPane(),cssEntries,prefixWhiteSpace);
+		}
+		else if (component instanceof JLabel)
+		{
+			JLabel label = (JLabel) component;
+			
+			html= HTMLLabel.toHtml(label,cssEntries,prefixWhiteSpace);
+
+				
+		}
+		else if (component instanceof ToHTML)
+		{
+			html = ((ToHTML) component).toHtml( cssEntries, prefixWhiteSpace);
+		}
+		else if (component instanceof Container)
+		{
+			Container container = (Container) component;
+			
+			html = containerToHtml(container,cssEntries,prefixWhiteSpace,true);
+				
+		}
+
+
+		
+		return html;
+	}
+	
+	static CSS getStyle(Component component, HashMap<String, CSS> cssEntries, Integer ... fudgeFactors)
+	{
+		String style = "";
+
+		Component curr = component;
+		int background=defaultBackground;
+		while (curr!=null && !(curr instanceof NonInhieratibleBackground) && background==defaultBackground)
+		{
+			background=curr.getBackground().getRGB();
+			curr=curr.getParent();
+		}
+		
+		curr = component;
+		int foreground=defaultForeground;
+		while (curr!=null && foreground==defaultForeground)
+		{
+			foreground=curr.getForeground().getRGB();
+			curr=curr.getParent();
+		}
+		
+		curr = component;
+		int fontSize=defaultFont.getSize();
+		while (curr!=null && fontSize==defaultFont.getSize())
+		{
+			fontSize=curr.getFont().getSize();
+			curr=curr.getParent();
+		}
+ 
+		if (background!=defaultBackground)
+		{
+			style+="background: #"+Integer.toHexString(background&0xFFFFFF)+";\n";
+		}
+		
+		if (foreground!=defaultForeground)
+		{
+			style+="color: #"+Integer.toHexString(foreground&0xFFFFFF)+";\n";
+		}
+		
+		if (fontSize!=defaultFont.getSize())
+		{
+			style+="font-size:"+fontSize+"px;\n";
+		}
+		
+//		if (!(component instanceof JPanel))
+//		{
+			style+="width: "+(component.getSize().getWidth()+ (fudgeFactors.length>0?fudgeFactors[0]:0))+"px;\n";
+			style+="height: "+(component.getSize().getHeight()+ (fudgeFactors.length>1?fudgeFactors[1]:0))+"px;\n";
+//		}
+		
+		CSS entry = null;
+		if (style.length()>0)
+		{
+			entry = cssEntries.get(style);
+			if (entry ==null)
+			{
+				entry = new CSS();
+				entry.className="C"+cssEntries.size();
+				entry.style=style;
+				cssEntries.put(entry.style,entry);
+			}
+		}
+		return entry;
+	}
+
+	static String getID(Component component)
+	{
+		return component.getName()!=null?component.getName():""+component.hashCode();
+	}
+	
+
+	static String containerToHtml(Container container, HashMap<String, CSS> cssEntries,String prefixWhiteSpace, boolean computeStyle)
+	{
+		String html;
+		
+		CSS style = null;
+		
+		if (computeStyle) style=getStyle(container, cssEntries);
+		
+		if (container.getLayout() instanceof BorderLayout)
+		{
+			html=HTMLBorderLayout.toHtml((BorderLayout) container.getLayout(),style,cssEntries,prefixWhiteSpace);
+		}
+		else if (container.getLayout() instanceof FlowLayout )
+		{
+			html=HTMLFlowLayout.toHtml(container,style,cssEntries,prefixWhiteSpace);
+		}
+		else
+		{
+			System.out.println("UNKNOWN Layout: "+container.getLayout().getClass().getSimpleName());
+			html= toHtml(container.getComponent(0),cssEntries,prefixWhiteSpace);
+			
+		}
+		return html;
+	}
+}

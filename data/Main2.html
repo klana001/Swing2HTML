@@ -1,0 +1,642 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Main</title>
+
+<style type="text/css">
+.root-div {
+<!--position: relative;-->
+}
+.main-div {
+    margin: 0 auto;
+}
+
+.centred { margin: 0 auto;}
+
+.fillHorizontally { width: 100%;}
+
+.C13
+{color: #0;
+font-size:11px;
+width: 764.0px;
+height: 45.0px;
+}
+
+.C1
+{color: #0;
+font-size:11px;
+width: 784.0px;
+height: 562.0px;
+}
+
+.C16
+{background: #ffffff;
+color: #0;
+font-size:11px;
+width: 764.0px;
+height: 420.0px;
+}
+
+.C7
+{background: #404040;
+color: #0;
+font-size:11px;
+width: 764.0px;
+height: 26.0px;
+}
+
+.C15
+{color: #0;
+font-size:29px;
+width: 355.0px;
+height: 35.0px;
+}
+
+.repeatBackgroundpics_tree_png
+{background: url("pics/tree.png") repeat;
+}
+
+.C9
+{background: #404040;
+color: #ffffff;
+font-size:11px;
+width: 45.0px;
+height: 16.0px;
+}
+
+#canvas-wrap { position:relative; width:764px; height:45px   }
+#canvas-wrap canvas { position:absolute; top:0; left:0; z-index:-1 }
+.centred-text
+{
+	text-align: center;
+}
+.C5
+{background: #404040;
+color: #0;
+font-size:11px;
+width: 764.0px;
+height: 562.0px;
+}
+
+.C11
+{background: #404040;
+color: #ffffff;
+font-size:11px;
+width: 91.0px;
+height: 16.0px;
+}
+
+.C4
+{background: #404040;
+color: #0;
+font-size:11px;
+width: 10.0px;
+height: 562.0px;
+}
+
+.C8
+{background: #404040;
+color: #0;
+font-size:11px;
+width: 127.0px;
+height: 26.0px;
+}
+
+.main-div
+{
+    margin: 0 auto;
+}
+
+.row
+{
+    display: table-row;
+}
+		
+.cell
+{
+	display: table-cell;
+}
+
+.temp
+{
+	<!--border:1px solid #FFFF00;
+	padding: 3px;-->
+}
+
+.cell-expandToFill
+{
+	width: 100%;
+	height: 100%;
+}
+
+.container
+{
+	margin: auto;
+	padding:0;
+	display: table;
+}
+
+.centred 
+{
+	margin: 0 auto;
+}
+.C6
+{background: #404040;
+color: #0;
+font-size:11px;
+width: 764.0px;
+height: 71.0px;
+}
+
+.defaults
+{color: #333333;
+font-size:12px;
+font-family: "Tahoma";
+}
+
+.C17
+{background: #404040;
+color: #ffffff;
+font-size:11px;
+width: 396.0px;
+height: 16.0px;
+}
+
+.C3
+{background: #404040;
+color: #0;
+font-size:11px;
+width: 784.0px;
+height: 562.0px;
+}
+
+
+
+</style>
+
+<script>
+/**
+ * Draws a rounded rectangle using the current state of the canvas. 
+ * If you omit the last three params, it will draw a rectangle 
+ * outline with a 5 pixel border radius 
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {Number} x The top left x coordinate
+ * @param {Number} y The top left y coordinate 
+ * @param {Number} width The width of the rectangle 
+ * @param {Number} height The height of the rectangle
+ * @param {Number} radius The corner radius. Defaults to 5;
+ * @param {Boolean} fill Whether to fill the rectangle. Defaults to false.
+ * @param {Boolean} stroke Whether to stroke the rectangle. Defaults to true.
+ */
+function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+  if (typeof stroke == "undefined" ) {
+    stroke = true;
+  }
+  if (typeof radius === "undefined") {
+    radius = 5;
+  }
+  ctx.beginPath();
+  ctx.moveTo(x + radius, y);
+  ctx.lineTo(x + width - radius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+  ctx.lineTo(x + width, y + height - radius);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+  ctx.lineTo(x + radius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+  ctx.lineTo(x, y + radius);
+  ctx.quadraticCurveTo(x, y, x + radius, y);
+  ctx.closePath();
+  if (stroke) {
+    ctx.stroke();
+  }
+  if (fill) {
+    ctx.fill();
+  }        
+}
+
+function loaded()
+{
+	var canvas=document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle="#FF0000";
+	roundRect(ctx,0,15,600,100,25,true,false);
+	
+	var data = canvas.toDataURL();
+	var myElement = document.getElementById('canvas-wrap');
+	myElement.style.backgroundImage = 'url('+data+')';
+}
+
+</script>
+
+</head><body class="defaults" onload="loaded()">
+<div class="root-div">
+	<div class="main-div">
+		<div class="container centred">
+ 
+ 
+         <div class="container C1" style="">
+          <div id="" class="row " >
+            
+          </div>
+        
+          <div class="container cell-expandToFill">
+            <div class="row">
+              <div id="" class="cell ">
+                
+              </div>
+              
+              <div id="222627987" class="cell cell-expandToFill">
+                          <div class="container C3" style="">
+            <div id="" class="row " >
+              
+            </div>
+          
+            <div class="container cell-expandToFill">
+              <div class="row">
+                <div id="1254051964" class="cell ">
+                              <div class="container centred C4" style="">
+              <div class="container" >
+                <div class="row" >
+                
+                </div>
+              </div>
+            </div>
+
+                </div>
+                
+                <div id="1052343750" class="cell cell-expandToFill">
+                              <div class="container C5" style="">
+              <div id="1263677316" class="row " >
+                              <div class="container C6" style="">
+                <div id="1071705127" class="row " >
+                                  <div class="container C7" style="">
+                  <div id="" class="row " >
+                    
+                  </div>
+                
+                  <div class="container cell-expandToFill">
+                    <div class="row">
+                      <div id="" class="cell ">
+                        
+                      </div>
+                      
+                      <div id="" class="cell cell-expandToFill">
+                        
+                      </div>
+                      <div id="532487268" class="cell ">
+                                          <div class="container C8" style="">
+                    <div id="724304187" class="row " >
+                                          <div class="container centred C8" style="">
+                      <div class="container" >
+                        <div class="row" >
+                                                    <div id="438810904" class="cell C9">
+                                                    <p id="438810904" class="cell centred-text C9">Home</p>
+
+                            </div>
+                            <div id="1713444553" class="cell C11">
+                                                    <p id="1713444553" class="cell centred-text C11">Shopping cart</p>
+
+                            </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                    </div>
+                  
+                    <div class="container cell-expandToFill">
+                      <div class="row">
+                        <div id="" class="cell ">
+                          
+                        </div>
+                        
+                        <div id="" class="cell cell-expandToFill">
+                          
+                        </div>
+                        <div id="" class="cell ">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div id="" class="row ">
+                      
+                    </div>
+                  </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <div id="" class="row ">
+                    
+                  </div>
+                </div>
+
+                </div>
+              
+                <div class="container cell-expandToFill">
+                  <div class="row">
+                    <div id="" class="cell ">
+                      
+                    </div>
+                    
+                    <div id="" class="cell cell-expandToFill">
+                      
+                    </div>
+                    <div id="" class="cell ">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div id="2147158380" class="row ">
+                                  <!--
+                <div id = "canvas" class="*CLASSES*">
+                                    <div class="container C13" style="">
+                    <div id="" class="row " >
+                      
+                    </div>
+                  
+                    <div class="container cell-expandToFill">
+                      <div class="row">
+                        <div id="" class="cell ">
+                          
+                        </div>
+                        
+                        <div id="1049124435" class="cell cell-expandToFill">
+                                              <div class="repeatBackgroundpics_tree_png">
+                                            <div class="container centred " style="">
+                        <div class="container" >
+                          <div class="row" >
+                                                        <div id="91535797" class="cell C15">
+                                                        <p id="91535797" class="cell centred-text C15">TILED IMAGES GO HERE!</p>
+
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    
+
+                        </div>
+                        <div id="" class="cell ">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div id="" class="row ">
+                      
+                    </div>
+                  </div>
+
+                </div>
+                -->
+                
+                <div id="canvas-wrap" >
+                  <canvas id="canvas"></canvas>
+                  <div class="*CLASSES*">
+                  	                  <div class="container C13" style="">
+                    <div id="" class="row " >
+                      
+                    </div>
+                  
+                    <div class="container cell-expandToFill">
+                      <div class="row">
+                        <div id="" class="cell ">
+                          
+                        </div>
+                        
+                        <div id="1049124435" class="cell cell-expandToFill">
+                                              <div class="repeatBackgroundpics_tree_png">
+                                            <div class="container centred " style="">
+                        <div class="container" >
+                          <div class="row" >
+                                                        <div id="91535797" class="cell C15">
+                                                        <p id="91535797" class="cell centred-text C15">TILED IMAGES GO HERE!</p>
+
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    
+
+                        </div>
+                        <div id="" class="cell ">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div id="" class="row ">
+                      
+                    </div>
+                  </div>
+
+                  </div>
+                </div>
+
+                </div>
+              </div>
+
+              </div>
+            
+              <div class="container cell-expandToFill">
+                <div class="row">
+                  <div id="" class="cell ">
+                    
+                  </div>
+                  
+                  <div id="1843291214" class="cell cell-expandToFill">
+                                  <div class="container C16" style="">
+                <div id="" class="row " >
+                  
+                </div>
+              
+                <div class="container cell-expandToFill">
+                  <div class="row">
+                    <div id="" class="cell ">
+                      
+                    </div>
+                    
+                    <div id="" class="cell cell-expandToFill">
+                      
+                    </div>
+                    <div id="" class="cell ">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div id="" class="row ">
+                  
+                </div>
+              </div>
+
+                  </div>
+                  <div id="" class="cell ">
+                    
+                  </div>
+                </div>
+              </div>
+              <div id="68314396" class="row ">
+                              <div class="container C6" style="">
+                <div id="529198138" class="row " >
+                                  <!--
+                <div id = "canvas" class="*CLASSES*">
+                                    <div class="container C13" style="">
+                    <div id="" class="row " >
+                      
+                    </div>
+                  
+                    <div class="container cell-expandToFill">
+                      <div class="row">
+                        <div id="" class="cell ">
+                          
+                        </div>
+                        
+                        <div id="715047239" class="cell cell-expandToFill">
+                                              <div class="repeatBackgroundpics_tree_png">
+                                            <div class="container centred " style="">
+                        <div class="container" >
+                          <div class="row" >
+                                                        <div id="1155992963" class="cell C15">
+                                                        <p id="1155992963" class="cell centred-text C15">TILED IMAGES GO HERE!</p>
+
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    
+
+                        </div>
+                        <div id="" class="cell ">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div id="" class="row ">
+                      
+                    </div>
+                  </div>
+
+                </div>
+                -->
+                
+                <div id="canvas-wrap" >
+                  <canvas id="canvas"></canvas>
+                  <div class="*CLASSES*">
+                  	                  <div class="container C13" style="">
+                    <div id="" class="row " >
+                      
+                    </div>
+                  
+                    <div class="container cell-expandToFill">
+                      <div class="row">
+                        <div id="" class="cell ">
+                          
+                        </div>
+                        
+                        <div id="715047239" class="cell cell-expandToFill">
+                                              <div class="repeatBackgroundpics_tree_png">
+                                            <div class="container centred " style="">
+                        <div class="container" >
+                          <div class="row" >
+                                                        <div id="1155992963" class="cell C15">
+                                                        <p id="1155992963" class="cell centred-text C15">TILED IMAGES GO HERE!</p>
+
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    
+
+                        </div>
+                        <div id="" class="cell ">
+                          
+                        </div>
+                      </div>
+                    </div>
+                    <div id="" class="row ">
+                      
+                    </div>
+                  </div>
+
+                  </div>
+                </div>
+
+                </div>
+              
+                <div class="container cell-expandToFill">
+                  <div class="row">
+                    <div id="" class="cell ">
+                      
+                    </div>
+                    
+                    <div id="" class="cell cell-expandToFill">
+                      
+                    </div>
+                    <div id="" class="cell ">
+                      
+                    </div>
+                  </div>
+                </div>
+                <div id="1186505385" class="row ">
+                                  <div class="container centred C7" style="">
+                  <div class="container" >
+                    <div class="row" >
+                                            <div id="232146588" class="cell C17">
+                                            <p id="232146588" class="cell centred-text C17">Copyright Your Site Name :: All Rights reserved :: Design by blah blah</p>
+
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                </div>
+              </div>
+
+              </div>
+            </div>
+
+                </div>
+                <div id="941438670" class="cell ">
+                              <div class="container centred C4" style="">
+              <div class="container" >
+                <div class="row" >
+                
+                </div>
+              </div>
+            </div>
+
+                </div>
+              </div>
+            </div>
+            <div id="" class="row ">
+              
+            </div>
+          </div>
+
+              </div>
+              <div id="" class="cell ">
+                
+              </div>
+            </div>
+          </div>
+          <div id="" class="row ">
+            
+          </div>
+        </div>
+
+
+		</div>
+	</div>
+</div>
+<br>
+</body></html>

@@ -1,0 +1,7 @@
+<div class="container centred *CONTAINER_CLASSES*" style="*STYLE*">
+  <div class="container" >
+    <div class="row" >
+    *INNER_PANELS*
+    </div>
+  </div>
+</div>
