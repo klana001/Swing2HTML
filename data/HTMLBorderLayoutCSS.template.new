@@ -1,0 +1,59 @@
+.main-div
+{
+    margin: 0 auto;
+}
+
+.row
+{
+    display: table-row;
+}
+		
+.cell
+{
+	display: table-cell;
+}
+
+.temp
+{
+	<!--border:1px solid #FFFF00;
+	padding: 3px;-->
+}
+
+.cell-expandToFill
+{
+	width: 100%;
+	height: 100%;
+}
+
+.container
+{
+	margin: auto;
+	padding:0;
+	display: table;
+}
+
+.centred 
+{
+	margin: 0 auto;
+}
+
+.cell-left
+{
+	display: table-cell;
+	float:left;
+}
+.cell-right
+{
+	display: table-cell;
+	float:right;
+}
+.cell-mid
+{
+	display: table-cell;
+}
+.table
+{
+	display:table;
+}
+
+

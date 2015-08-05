@@ -37,7 +37,7 @@ public class HTMLBorderLayout {
 		}
 	}
 
-	static String toHtml(BorderLayout layout,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace)
+	static String toHtml(BorderLayout layout,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		cssEntries.put("HTMLBorderLayoutCSS.template",cssTemplate);
 		prefixWhiteSpace+="  ";
@@ -60,7 +60,7 @@ public class HTMLBorderLayout {
 		else
 		{
 			html = html.replace("*TOP_ID*", Swing2HTML.getID(northComponent) );
-			html = html.replace("*TOP_HTML*", Swing2HTML.toHtml(northComponent,cssEntries,prefixWhiteSpace));
+			html = html.replace("*TOP_HTML*", Swing2HTML.toHtml(northComponent,cssEntries,prefixWhiteSpace,scripts));
 		}
 
 		html = html.replace("*LEFT_CLASSES*", "");
@@ -72,7 +72,7 @@ public class HTMLBorderLayout {
 		else
 		{
 			html = html.replace("*LEFT_ID*", Swing2HTML.getID(westComponent) );
-			html = html.replace("*LEFT_HTML*", Swing2HTML.toHtml(westComponent,cssEntries,prefixWhiteSpace));
+			html = html.replace("*LEFT_HTML*", Swing2HTML.toHtml(westComponent,cssEntries,prefixWhiteSpace,scripts));
 		}
 		html = html.replace("*MID_CLASSES*", "cell-expandToFill");
 		if (centerComponent==null)
@@ -83,7 +83,7 @@ public class HTMLBorderLayout {
 		else
 		{
 			html = html.replace("*MID_ID*", Swing2HTML.getID(centerComponent) );
-			html = html.replace("*MID_HTML*", Swing2HTML.toHtml(centerComponent,cssEntries,prefixWhiteSpace));
+			html = html.replace("*MID_HTML*", Swing2HTML.toHtml(centerComponent,cssEntries,prefixWhiteSpace,scripts));
 		}
 		
 		html = html.replace("*RIGHT_CLASSES*", "");
@@ -95,7 +95,7 @@ public class HTMLBorderLayout {
 		else
 		{
 			html = html.replace("*RIGHT_ID*", Swing2HTML.getID(eastComponent) );
-			html = html.replace("*RIGHT_HTML*", Swing2HTML.toHtml(eastComponent,cssEntries,prefixWhiteSpace));
+			html = html.replace("*RIGHT_HTML*", Swing2HTML.toHtml(eastComponent,cssEntries,prefixWhiteSpace,scripts));
 		}
 		
 		html = html.replace("*BOTTOM_CLASSES*", "");
@@ -107,7 +107,7 @@ public class HTMLBorderLayout {
 		else
 		{
 			html = html.replace("*BOTTOM_ID*", Swing2HTML.getID(southComponent) );
-			html = html.replace("*BOTTOM_HTML*", Swing2HTML.toHtml(southComponent,cssEntries,prefixWhiteSpace));
+			html = html.replace("*BOTTOM_HTML*", Swing2HTML.toHtml(southComponent,cssEntries,prefixWhiteSpace,scripts));
 		}
 		
 		return html;

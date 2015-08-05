@@ -11,7 +11,7 @@ import java.util.Set;
 import javax.swing.JComponent;
 
 public class HTMLMain {
-	
+	static public final String LOADED="LOADED";
 	static String htmlTemplate;
 //	static CSS cssTemplate;
 //	
@@ -34,13 +34,14 @@ public class HTMLMain {
 		
 		
 		HashMap<String, CSS> cssEntries = new HashMap<>();
+		HashMap<String, List<String>> scripts = new HashMap<>();
 		
 		
 		String defaultStyle="";
 		
 
-//		defaultStyle+="background: #"+Integer.toHexString(Swing2HTML.defaultBackground&0xFFFFFF)+";\n";
-		defaultStyle+="color: #"+Integer.toHexString(Swing2HTML.defaultForeground&0xFFFFFF)+";\n";
+//		defaultStyle+="background: #"+String.format("%06X", Swing2HTML.defaultBackground & 0xFFFFFF)+";\n";
+		defaultStyle+="color: #"+String.format("%06X", Swing2HTML.defaultForeground & 0xFFFFFF)+";\n";
 		defaultStyle+="font-size:"+Swing2HTML.defaultFont.getSize()+"px;\n";
 		defaultStyle+="font-family: \""+component.getFont().getFamily()+"\";\n";
 		
@@ -54,13 +55,23 @@ public class HTMLMain {
 		cssEntries.put(defaults.style,defaults);
 
 		
-		String componentHTML= Swing2HTML.toHtml(component, cssEntries, "      ");
+		String componentHTML= Swing2HTML.toHtml(component, cssEntries, "      ",scripts);
+		
+		
+		String html = htmlTemplate.replace("*START*", "");
 		
 		StringBuilder sb= new StringBuilder();
 		cssEntries.values().stream().forEach(css->sb.append(css.raw!=null?css.raw:("."+css.className+"\n{"+css.style+"}\n\n")));
-
-		String html = htmlTemplate.replace("*START*", "");
 		html = html.replace("*CSS*", sb.toString());
+		
+		sb.setLength(0);
+		scripts.entrySet().stream().filter(entry->!entry.getKey().equals(LOADED)).forEach(entry->entry.getValue().stream().forEach(script->sb.append(script+"\n")));
+		html = html.replace("*SCRIPT*", sb.toString());
+		
+		sb.setLength(0);
+		scripts.entrySet().stream().filter(entry->entry.getKey().equals(LOADED)).forEach(entry->entry.getValue().stream().forEach(script->sb.append(script+"\n")));
+		html = html.replace("*LOADED*", sb.toString());
+
 		html = html.replace("*HTML*", componentHTML);
 	
 		return html;

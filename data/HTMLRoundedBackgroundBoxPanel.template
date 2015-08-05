@@ -1,11 +1,5 @@
-<!--
-<div id = "*ID*" class="*CLASSES*">
-  *INNER_PANELS*
-</div>
--->
-
 <div id="*ID*-wrap" >
-  <canvas id="*ID*"></canvas>
+  <canvas id="*ID*" width="*WIDTH*" height="*HEIGHT*"></canvas>
   <div class="*CLASSES*">
   	*INNER_PANELS*
   </div>

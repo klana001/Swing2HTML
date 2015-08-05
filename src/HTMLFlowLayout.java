@@ -45,7 +45,7 @@ public class HTMLFlowLayout {
 		}
 	}
 
-	static String toHtml(Container container,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace)
+	static String toHtml(Container container,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		cssEntries.put("HTMLBorderLayoutCSS.template",cssTemplate);
 		prefixWhiteSpace+="  ";
@@ -65,7 +65,7 @@ public class HTMLFlowLayout {
 			innerhtml = innerhtml.replace("*CLASSES*", innerStyle!=null?innerStyle.className:"");
 			
 			innerhtml = innerhtml.replace("*ID*", Swing2HTML.getID(component) );
-			innerhtml = innerhtml.replace("*HTML*", Swing2HTML.toHtml(component,cssEntries,prefixWhiteSpace));
+			innerhtml = innerhtml.replace("*HTML*", Swing2HTML.toHtml(component,cssEntries,prefixWhiteSpace,scripts));
 			sb.append(innerhtml);
 		}
 		

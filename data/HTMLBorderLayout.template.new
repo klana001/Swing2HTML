@@ -1,0 +1,21 @@
+<div class="table cell-expandToFill *CONTAINER_CLASSES*" style="*STYLE*">
+  <div id="*TOP_ID*" class="row *TOP_CLASSES*" >
+    *TOP_HTML*
+  </div>
+
+  <div class="table cell-expandToFill">
+     <div id="*LEFT_ID*" class="cell-left *LEFT_CLASSES*">
+        *LEFT_HTML*
+      </div>
+      
+      <div id="*MID_ID*" class="cell-mid *MID_CLASSES*">
+        *MID_HTML*
+      </div>
+      <div id="*RIGHT_ID*" class="cell-right *RIGHT_CLASSES*">
+        *RIGHT_HTML*
+	  </div>
+  </div>
+  <div id="*BOTTOM_ID*" class="row *BOTTOM_CLASSES*">
+    *BOTTOM_HTML*
+  </div>
+</div>

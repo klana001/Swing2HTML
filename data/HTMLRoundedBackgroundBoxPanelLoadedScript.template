@@ -1,0 +1,10 @@
+{
+	var canvas=document.getElementById("*ID*");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle="#*BACK_GROUND*";
+	roundRect(ctx,*X_OFFSET*,*Y_OFFSET*,*WIDTH*,*HEIGHT*,*RADIUS*,true,false);
+	
+	var data = canvas.toDataURL();
+	var myElement = document.getElementById('*ID*-wrap');
+	myElement.style.backgroundImage = 'url('+data+')';
+}

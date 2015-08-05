@@ -1,10 +1,15 @@
 import javax.swing.JPanel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+
+import javax.swing.ImageIcon;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 
 public class WebsiteTemplate extends JPanel
@@ -39,24 +44,26 @@ public class WebsiteTemplate extends JPanel
 		
 		RoundedBackgroundBoxPanel topRoundedBackgroundBoxPanel = new RoundedBackgroundBoxPanel();
 		topRoundedBackgroundBoxPanel.setBackground(Color.WHITE);
-		topRoundedBackgroundBoxPanel.setBackgroundBox(0, 20, 40);
+		
 		topRoundedBackgroundBoxPanel.setLayout(new BorderLayout(0,0));
 		
 		
-		TiledBackGroundJPanel tiledBackGroundJPanel = new TiledBackGroundJPanel();
-		tiledBackGroundJPanel.setTileImage("pics/tree.png");
+		TiledBackGroundJPanel tiledBackGroundJPanel = new TiledBackGroundJPanel(WebsiteTemplate.class.getResource("/data/pics/tree.png"),true);
+		topRoundedBackgroundBoxPanel.setBackgroundBox(0, 50, 20);
+		
 		
 		topRoundedBackgroundBoxPanel.add(tiledBackGroundJPanel,BorderLayout.CENTER);
 		topPanel.add(topRoundedBackgroundBoxPanel, BorderLayout.SOUTH);
 		
-		JLabel label = new JLabel("TILED IMAGES GO HERE!");
-		tiledBackGroundJPanel.add(label);
-		label.setForeground(Color.BLACK);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 29));
+		JPanel Padding = new JPanel();
+		Padding.setPreferredSize(new Dimension(10, 15));
+		Padding.setSize(new Dimension(10, 15));
+		topPanel.add(Padding, BorderLayout.NORTH);
+		Padding.setLayout(new BorderLayout(0, 0));
 		
 		JPanel topNavButtonPanel = new JPanel();
+		topPanel.add(topNavButtonPanel, BorderLayout.CENTER);
 		topNavButtonPanel.setBackground(Color.DARK_GRAY);
-		topPanel.add(topNavButtonPanel, BorderLayout.NORTH);
 		topNavButtonPanel.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -96,27 +103,156 @@ public class WebsiteTemplate extends JPanel
 		
 		RoundedBackgroundBoxPanel bottomRoundedBackgroundBoxPanel = new RoundedBackgroundBoxPanel();
 		bottomRoundedBackgroundBoxPanel.setBackground(Color.WHITE);
-		bottomRoundedBackgroundBoxPanel.setBackgroundBox(0, -20, 40);
 		bottomRoundedBackgroundBoxPanel.setLayout(new BorderLayout(0,0));
 		
 		
-		TiledBackGroundJPanel bottomtiledBackGroundJPanel = new TiledBackGroundJPanel();
-		bottomtiledBackGroundJPanel.setTileImage("pics/tree.png");
+		TiledBackGroundJPanel bottomtiledBackGroundJPanel = new TiledBackGroundJPanel(WebsiteTemplate.class.getResource("/data/pics/tree.png"),true);
+		bottomRoundedBackgroundBoxPanel.setBackgroundBox(0, -50, 20);
+
 		
 		bottomRoundedBackgroundBoxPanel.add(bottomtiledBackGroundJPanel,BorderLayout.CENTER);
-		bottomPanel.add(bottomRoundedBackgroundBoxPanel, BorderLayout.NORTH);		
-		
-		
-		JLabel lblNewLabel = new JLabel("TILED IMAGES GO HERE!");
-		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		bottomtiledBackGroundJPanel.add(lblNewLabel);
+		bottomPanel.add(bottomRoundedBackgroundBoxPanel, BorderLayout.NORTH);
 		
 		JPanel mainCentreCentrePanel = new JPanel();
 		mainCentreCentrePanel.setBackground(Color.WHITE);
 		mainCentreCentrePanel.setSize(new Dimension(700, 500));
 		mainCentrePanel.add(mainCentreCentrePanel, BorderLayout.CENTER);
 		mainCentreCentrePanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel titlePanel = new JPanel();
+		titlePanel.setBackground(Color.WHITE);
+		mainCentreCentrePanel.add(titlePanel, BorderLayout.NORTH);
+		titlePanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_2 = new JLabel();
+		lblNewLabel_2.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/title.png")));
+		titlePanel.add(lblNewLabel_2, BorderLayout.WEST);
+		
+		JPanel socialisePanel = new JPanel();
+		titlePanel.add(socialisePanel, BorderLayout.EAST);
+		socialisePanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel socialButtonPanel = new JPanel();
+		socialButtonPanel.setBackground(Color.WHITE);
+		socialisePanel.add(socialButtonPanel, BorderLayout.EAST);
+		socialButtonPanel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JLabel lblNewLabel_3 = new JLabel("facebook");
+		lblNewLabel_3.setBackground(Color.WHITE);
+		socialButtonPanel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("twitter");
+		lblNewLabel_4.setBackground(Color.WHITE);
+		socialButtonPanel.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("pinterest");
+		lblNewLabel_5.setBackground(Color.WHITE);
+		socialButtonPanel.add(lblNewLabel_5);
+		
+		JPanel socialRequestPanel = new JPanel();
+		socialRequestPanel.setBackground(Color.WHITE);
+		socialisePanel.add(socialRequestPanel, BorderLayout.WEST);
+		socialRequestPanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel lblNewLabel_6 = new JLabel("Socialise with us --> ");
+		socialRequestPanel.add(lblNewLabel_6, BorderLayout.SOUTH);
+		
+		JPanel navPanel = new JPanel();
+		mainCentreCentrePanel.add(navPanel, BorderLayout.WEST);
+		navPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel navPanel1 = new JPanel();
+		navPanel.add(navPanel1, BorderLayout.NORTH);
+		navPanel1.setLayout(new BorderLayout(0, 0));
+		
+		JPanel boutiquePanel = new JPanel();
+		navPanel1.add(boutiquePanel, BorderLayout.NORTH);
+		boutiquePanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel boutiqueLabel = new JLabel("");
+		boutiqueLabel.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/boutique.png")));
+		boutiquePanel.add(boutiqueLabel, BorderLayout.NORTH);
+		
+		JPanel categoryPanel = new JPanel();
+		boutiquePanel.add(categoryPanel, BorderLayout.SOUTH);
+		categoryPanel.setLayout(new GridLayout(5, 0, 0, 0));
+		
+		JLabel lblCategory = new JLabel("Category");
+		categoryPanel.add(lblCategory);
+		
+		JLabel label = new JLabel("Category");
+		categoryPanel.add(label);
+		
+		JLabel label_1 = new JLabel("Category");
+		categoryPanel.add(label_1);
+		
+		JLabel label_2 = new JLabel("Category");
+		categoryPanel.add(label_2);
+		
+		JLabel label_3 = new JLabel("Category");
+		categoryPanel.add(label_3);
+		
+		JPanel navPanel2 = new JPanel();
+		navPanel1.add(navPanel2, BorderLayout.SOUTH);
+		navPanel2.setLayout(new BorderLayout(0, 0));
+		
+		JPanel infoPanel = new JPanel();
+		navPanel2.add(infoPanel, BorderLayout.NORTH);
+		infoPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel infoOptionsPanel = new JPanel();
+		infoPanel.add(infoOptionsPanel, BorderLayout.SOUTH);
+		infoOptionsPanel.setLayout(new GridLayout(5, 0, 0, 0));
+		
+		JLabel lblHome = new JLabel("Home");
+		infoOptionsPanel.add(lblHome);
+		
+		JLabel lblCatalogue = new JLabel("Catalogue");
+		infoOptionsPanel.add(lblCatalogue);
+		
+		JLabel lblTerms = new JLabel("Terms");
+		infoOptionsPanel.add(lblTerms);
+		
+		JLabel lblLinks = new JLabel("Links");
+		infoOptionsPanel.add(lblLinks);
+		
+		JLabel lblContact = new JLabel("Contact");
+		infoOptionsPanel.add(lblContact);
+		
+		JLabel infoLabel = new JLabel("");
+		infoLabel.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/info.png")));
+		infoPanel.add(infoLabel, BorderLayout.NORTH);
+		
+		JPanel navPanel3 = new JPanel();
+		navPanel2.add(navPanel3, BorderLayout.SOUTH);
+		navPanel3.setLayout(new BorderLayout(0, 0));
+		
+		JPanel cartPanel = new JPanel();
+		navPanel3.add(cartPanel, BorderLayout.NORTH);
+		cartPanel.setLayout(new BorderLayout(0, 0));
+		
+		JPanel cartOptionsPanel = new JPanel();
+		cartPanel.add(cartOptionsPanel, BorderLayout.SOUTH);
+		cartOptionsPanel.setLayout(new GridLayout(1, 0, 0, 0));
+		
+		JLabel lblNewLabel = new JLabel("View Cart");
+		cartOptionsPanel.add(lblNewLabel);
+		
+		JLabel cartLabel = new JLabel("");
+		cartPanel.add(cartLabel, BorderLayout.NORTH);
+		cartLabel.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/cart.png")));
+		
+		JPanel navPanel4 = new JPanel();
+		navPanel3.add(navPanel4, BorderLayout.SOUTH);
+		navPanel4.setLayout(new BorderLayout(0, 0));
+		
+		JPanel searchPanel = new JPanel();
+		navPanel4.add(searchPanel, BorderLayout.NORTH);
+		searchPanel.setLayout(new BorderLayout(0, 0));
+		
+		JLabel searchLabel = new JLabel("");
+		searchLabel.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/searchSite.png")));
+		searchPanel.add(searchLabel, BorderLayout.NORTH);
 
 	}
 
