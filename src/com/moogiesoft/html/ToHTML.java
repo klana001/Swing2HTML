@@ -1,3 +1,4 @@
+package com.moogiesoft.html;
 import java.util.HashMap;
 import java.util.List;
 

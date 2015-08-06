@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import javax.swing.JFrame;
 
 import java.awt.BorderLayout;

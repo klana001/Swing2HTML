@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.io.IOException;
@@ -10,6 +11,9 @@ import java.util.Set;
 
 import javax.swing.JComponent;
 
+import com.moogiesoft.html.CSS;
+import com.moogiesoft.html.Swing2HTML;
+
 public class HTMLMain {
 	static public final String LOADED="LOADED";
 	static String htmlTemplate;
@@ -20,7 +24,7 @@ public class HTMLMain {
 		try
 		{
 			StringBuilder sb= new StringBuilder();
-			Files.readAllLines(Paths.get("data/HTMLMain.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLMain.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlTemplate=sb.toString();
 		} catch (IOException e)
@@ -29,7 +33,7 @@ public class HTMLMain {
 		}
 	}
 
-	static String toHtml(Component component)
+	public static String toHtml(Component component)
 	{
 		
 		
@@ -56,8 +60,6 @@ public class HTMLMain {
 
 		
 		String componentHTML= Swing2HTML.toHtml(component, cssEntries, "      ",scripts);
-		
-		
 		String html = htmlTemplate.replace("*START*", "");
 		
 		StringBuilder sb= new StringBuilder();
@@ -73,7 +75,23 @@ public class HTMLMain {
 		html = html.replace("*LOADED*", sb.toString());
 
 		html = html.replace("*HTML*", componentHTML);
+
+//		html= escapeHTMLforJavaScript(html);
+		
+		return html;
+	}
 	
+	static public String escapeHTMLforJavaScript(String html)
+	{
+		int startLength;
+		do
+		{
+			startLength=html.length();
+			html = html.replace("  ","");
+		} while (html.length()!=startLength);
+		
+		html = html.replace("\t","");
+		html = html.replace("\n", "");
 		return html;
 	}
 }

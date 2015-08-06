@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.CardLayout;
 
 
 public class WebsiteTemplate extends JPanel
@@ -119,12 +121,15 @@ public class WebsiteTemplate extends JPanel
 		mainCentrePanel.add(mainCentreCentrePanel, BorderLayout.CENTER);
 		mainCentreCentrePanel.setLayout(new BorderLayout(0, 0));
 		
+		CardPanel cardPanel = new CardPanel();
+		
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBackground(Color.WHITE);
 		mainCentreCentrePanel.add(titlePanel, BorderLayout.NORTH);
 		titlePanel.setLayout(new BorderLayout(0, 0));
-		
+
 		JLabel lblNewLabel_2 = new JLabel();
+		
 		lblNewLabel_2.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/title.png")));
 		titlePanel.add(lblNewLabel_2, BorderLayout.WEST);
 		
@@ -177,17 +182,29 @@ public class WebsiteTemplate extends JPanel
 		boutiquePanel.add(categoryPanel, BorderLayout.SOUTH);
 		categoryPanel.setLayout(new GridLayout(5, 0, 0, 0));
 		
-		JLabel lblCategory = new JLabel("Category");
+		JPanel categoryPanel1 = new JPanel();
+		categoryPanel1.setBackground(Color.CYAN);
+		cardPanel.add(categoryPanel1, "categoryPanel1");
+		JLabel lblCategory= cardPanel.createLinkLabel("categoryPanel1","Category");
 		categoryPanel.add(lblCategory);
 		
-		JLabel label = new JLabel("Category");
-		categoryPanel.add(label);
+		JPanel categoryPanel2 = new JPanel();
+		categoryPanel2.setBackground(Color.ORANGE);
+		cardPanel.add(categoryPanel2, "categoryPanel2");
+		JLabel lblCategory2= cardPanel.createLinkLabel("categoryPanel2","Category");
+		categoryPanel.add(lblCategory2);
 		
-		JLabel label_1 = new JLabel("Category");
-		categoryPanel.add(label_1);
 		
-		JLabel label_2 = new JLabel("Category");
-		categoryPanel.add(label_2);
+		
+		RoundedBackgroundBoxPanel roundedBackgroundBoxPanel1 = new RoundedBackgroundBoxPanel();
+		roundedBackgroundBoxPanel1.setBackground(Color.PINK);
+		roundedBackgroundBoxPanel1.setBackgroundBox(0, 0, 35);
+		cardPanel.add(roundedBackgroundBoxPanel1, "categoryPanel3");
+		JLabel lblCategory3= cardPanel.createLinkLabel("categoryPanel3","Category");
+		categoryPanel.add(lblCategory3);
+		
+//		JLabel label_2 = new JLabel("Category");
+//		categoryPanel.add(label_2);
 		
 		JLabel label_3 = new JLabel("Category");
 		categoryPanel.add(label_3);
@@ -253,6 +270,10 @@ public class WebsiteTemplate extends JPanel
 		JLabel searchLabel = new JLabel("");
 		searchLabel.setIcon(new ImageIcon(WebsiteTemplate.class.getResource("/data/pics/searchSite.png")));
 		searchPanel.add(searchLabel, BorderLayout.NORTH);
+		
+		mainCentreCentrePanel.add(cardPanel, BorderLayout.CENTER);
+		cardPanel.setLayout(new CardLayout(0, 0));
+		
 
 	}
 

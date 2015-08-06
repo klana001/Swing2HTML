@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
@@ -12,6 +13,9 @@ import java.util.Set;
 
 import javax.swing.JComponent;
 
+import com.moogiesoft.html.CSS;
+import com.moogiesoft.html.Swing2HTML;
+
 public class HTMLGridLayout {
 
 	static CSS cssTemplate;
@@ -22,7 +26,7 @@ public class HTMLGridLayout {
 		{
 			StringBuilder sb= new StringBuilder();
 			
-			Files.readAllLines(Paths.get("data/HTMLBorderLayoutCSS.template")).stream().forEach(line->sb.append(line+"\n"));
+			Files.readAllLines(Paths.get("data/templates/HTMLBorderLayoutCSS.template")).stream().forEach(line->sb.append(line+"\n"));
 			cssTemplate = new CSS();
 			cssTemplate.className="HTMLBorderLayoutCSS.template";
 			cssTemplate.raw = sb.toString();
@@ -33,7 +37,7 @@ public class HTMLGridLayout {
 		}
 	}
 
-	static String toHtml(Container container,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
+	public static String toHtml(Container container,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		GridLayout gridLayout = (GridLayout) container.getLayout();
 		cssEntries.put("HTMLBorderLayoutCSS.template",cssTemplate);

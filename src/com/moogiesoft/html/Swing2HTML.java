@@ -1,3 +1,4 @@
+package com.moogiesoft.html;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -21,15 +22,23 @@ import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import com.moogiesoft.swing.HTMLBorderLayout;
+import com.moogiesoft.swing.HTMLFlowLayout;
+import com.moogiesoft.swing.HTMLGridLayout;
+import com.moogiesoft.swing.HTMLLabel;
+import com.moogiesoft.swing.HTMLMain;
+import com.moogiesoft.swing.MainPage;
+import com.moogiesoft.swing.NonInhieratibleBackground;
+
 
 public class Swing2HTML
 {
 
 	
 	public static final String RESOURCE_PATH = "data";
-	static int defaultBackground;
-	static int defaultForeground;
-	static FontUIResource defaultFont; 
+	public static int defaultBackground;
+	public static int defaultForeground;
+	public static FontUIResource defaultFont; 
 	
 	static
 	{
@@ -106,11 +115,15 @@ public class Swing2HTML
 		
 	}
 
-	static String toHtml(Component component, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
+	public static String toHtml(Component component, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		String html= "UNKNOWN Component: "+component.getClass().getSimpleName();
 		
-		if (component instanceof JFrame )
+		if (component instanceof ToHTML)
+		{
+			html = ((ToHTML) component).toHtml( cssEntries, prefixWhiteSpace,scripts);
+		}
+		else if (component instanceof JFrame )
 		{
 			html=toHtml(((JFrame) component).getContentPane(),cssEntries,prefixWhiteSpace,scripts);
 		}
@@ -119,12 +132,6 @@ public class Swing2HTML
 			JLabel label = (JLabel) component;
 			
 			html= HTMLLabel.toHtml(label,cssEntries,prefixWhiteSpace,scripts);
-
-				
-		}
-		else if (component instanceof ToHTML)
-		{
-			html = ((ToHTML) component).toHtml( cssEntries, prefixWhiteSpace,scripts);
 		}
 		else if (component instanceof Container)
 		{
@@ -139,12 +146,12 @@ public class Swing2HTML
 		return html;
 	}
 	
-	static CSS getStyle(Component component, HashMap<String, CSS> cssEntries)
+	public static CSS getStyle(Component component, HashMap<String, CSS> cssEntries)
 	{
 		return getStyle(component,cssEntries,null);
 	}
 	
-	static CSS getStyle(Component component, HashMap<String, CSS> cssEntries, HashMap<Style, String> extraStyles)
+	public static CSS getStyle(Component component, HashMap<String, CSS> cssEntries, HashMap<Style, String> extraStyles)
 	{
 		String style = "";
 
@@ -296,13 +303,13 @@ public class Swing2HTML
 //		return entry;
 //	}
 
-	static String getID(Component component)
+	public static String getID(Component component)
 	{
 		return component.getName()!=null?component.getName():""+component.hashCode();
 	}
 	
 
-	static String containerToHtml(Container container, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts, boolean computeStyle)
+	public static String containerToHtml(Container container, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts, boolean computeStyle)
 	{
 		String html;
 		

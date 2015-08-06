@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
@@ -17,6 +18,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+import com.moogiesoft.html.CSS;
+import com.moogiesoft.html.Swing2HTML;
+
 
 
 public class HTMLLabel {
@@ -30,19 +34,19 @@ public class HTMLLabel {
 		try
 		{
 			StringBuilder sb= new StringBuilder();
-			Files.readAllLines(Paths.get("data/HTMLLabel.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLLabel.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlTemplate=sb.toString();
 			
 			sb.setLength(0);
 			
-			Files.readAllLines(Paths.get("data/HTMLLabelImage.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLLabelImage.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlImageTemplate=sb.toString();
 			
 			sb.setLength(0);
 			
-			Files.readAllLines(Paths.get("data/HTMLLabelCSS.template")).stream().forEach(line->sb.append(line+"\n"));
+			Files.readAllLines(Paths.get("data/templates/HTMLLabelCSS.template")).stream().forEach(line->sb.append(line+"\n"));
 			cssTemplate = new CSS();
 			cssTemplate.className="HTMLLabelCSS.template";
 			cssTemplate.raw = sb.toString();
@@ -53,7 +57,7 @@ public class HTMLLabel {
 		}
 	}
 
-	static String toHtml(JLabel label,HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
+	public static String toHtml(JLabel label,HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		
 		prefixWhiteSpace+="  ";

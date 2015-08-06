@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
@@ -12,6 +13,9 @@ import java.util.Set;
 
 import javax.swing.JComponent;
 
+import com.moogiesoft.html.CSS;
+import com.moogiesoft.html.Swing2HTML;
+
 public class HTMLFlowLayout {
 	
 	static String htmlTemplate;
@@ -23,18 +27,18 @@ public class HTMLFlowLayout {
 		try
 		{
 			StringBuilder sb= new StringBuilder();
-			Files.readAllLines(Paths.get("data/HTMLFlowLayout.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLFlowLayout.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlTemplate=sb.toString();
 			
 			sb.setLength(0);
 			
-			Files.readAllLines(Paths.get("data/HTMLFlowLayoutInner.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLFlowLayoutInner.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlInnerTemplate=sb.toString();
 			
 			sb.setLength(0);
-			Files.readAllLines(Paths.get("data/HTMLBorderLayoutCSS.template")).stream().forEach(line->sb.append(line+"\n"));
+			Files.readAllLines(Paths.get("data/templates/HTMLBorderLayoutCSS.template")).stream().forEach(line->sb.append(line+"\n"));
 			cssTemplate = new CSS();
 			cssTemplate.className="HTMLBorderLayoutCSS.template";
 			cssTemplate.raw = sb.toString();
@@ -45,7 +49,7 @@ public class HTMLFlowLayout {
 		}
 	}
 
-	static String toHtml(Container container,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
+	public static String toHtml(Container container,CSS style, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		cssEntries.put("HTMLBorderLayoutCSS.template",cssTemplate);
 		prefixWhiteSpace+="  ";

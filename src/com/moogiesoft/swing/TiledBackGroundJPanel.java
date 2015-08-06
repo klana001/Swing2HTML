@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,6 +18,10 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import com.moogiesoft.html.CSS;
+import com.moogiesoft.html.Swing2HTML;
+import com.moogiesoft.html.ToHTML;
+
 public class TiledBackGroundJPanel extends JPanel implements ToHTML,NonInhieratibleBackground
 {
 	static String htmlTemplate;
@@ -26,7 +31,7 @@ public class TiledBackGroundJPanel extends JPanel implements ToHTML,NonInhierati
 		try
 		{
 			StringBuilder sb= new StringBuilder();
-			Files.readAllLines(Paths.get("data/HTMLTiledBackGroundJPanel.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLTiledBackGroundJPanel.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlTemplate=sb.toString();
 

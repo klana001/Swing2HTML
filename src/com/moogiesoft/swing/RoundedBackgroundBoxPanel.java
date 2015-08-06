@@ -1,3 +1,4 @@
+package com.moogiesoft.swing;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
@@ -11,6 +12,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import com.moogiesoft.html.CSS;
+import com.moogiesoft.html.Swing2HTML;
+import com.moogiesoft.html.ToHTML;
+
 public class RoundedBackgroundBoxPanel extends JPanel implements NonInhieratibleBackground , ToHTML
 {
 	private static final String ROUNDED_RECT = "ROUNDED_RECT";
@@ -23,17 +28,17 @@ public class RoundedBackgroundBoxPanel extends JPanel implements NonInhieratible
 		try
 		{
 			StringBuilder sb= new StringBuilder();
-			Files.readAllLines(Paths.get("data/HTMLRoundedBackgroundBoxPanel.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLRoundedBackgroundBoxPanel.template")).stream().forEach(line->sb.append("*START*"+line+"\n"));//,
 			
 			htmlTemplate=sb.toString();
 			
 			sb.setLength(0);
-			Files.readAllLines(Paths.get("data/HTMLRoundedBackgroundBoxPanelScript.template")).stream().forEach(line->sb.append(line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLRoundedBackgroundBoxPanelScript.template")).stream().forEach(line->sb.append(line+"\n"));//,
 			
 			scriptTemplate=sb.toString();
 			
 			sb.setLength(0);
-			Files.readAllLines(Paths.get("data/HTMLRoundedBackgroundBoxPanelLoadedScript.template")).stream().forEach(line->sb.append(line+"\n"));//,
+			Files.readAllLines(Paths.get("data/templates/HTMLRoundedBackgroundBoxPanelLoadedScript.template")).stream().forEach(line->sb.append(line+"\n"));//,
 			
 			loadedScriptTemplate=sb.toString();
 
