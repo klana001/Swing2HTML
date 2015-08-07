@@ -22,7 +22,7 @@
 .cell-expandToFill
 {
 	width: 100%;
-	<!--height: 100%;-->
+	height: 100%;
 }
 
 .container
@@ -30,9 +30,36 @@
 	margin: auto;
 	padding:0;
 	display: table;
+	<!--table-layout: fixed;
+	box-sizing: border-box;-->
 }
 
 .centred 
 {
 	margin: 0 auto;
+}
+
+.alignLeft
+{
+	vertical-align: left;
+}
+
+.alignRight
+{
+	vertical-align: right;
+}
+
+.alignTop
+{
+	vertical-align: top;
+}
+
+.alignBottom
+{
+	vertical-align: bottom;
+}
+
+.alignMiddle
+{
+	vertical-align: middle;
 }

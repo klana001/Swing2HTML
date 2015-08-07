@@ -99,7 +99,7 @@ public class HTMLLabel {
 			
 			html = htmlTemplate.replace("*START*", prefixWhiteSpace);
 			html = html.replace("*CLASSES*", style!=null?style.className:"");
-			html = html.replace("*TEXT*", label.getText());
+			html = html.replace("*TEXT*", Swing2HTML.stringToHTMLString(label.getText()));
 			html = html.replace("*ID*", Swing2HTML.getID(label) );
 		}
 

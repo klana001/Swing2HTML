@@ -1,23 +1,3 @@
-<div class="container *CONTAINER_CLASSES*" style="*STYLE*">
-  <div id="*TOP_ID*" class="row *TOP_CLASSES*" >
-    *TOP_HTML*
-  </div>
-
-  <div class="container cell-expandToFill">
-    <div class="row">
-      <div id="*LEFT_ID*" class="cell *LEFT_CLASSES*">
-        *LEFT_HTML*
-      </div>
-      
-      <div id="*MID_ID*" class="cell *MID_CLASSES*">
-        *MID_HTML*
-      </div>
-      <div id="*RIGHT_ID*" class="cell *RIGHT_CLASSES*">
-        *RIGHT_HTML*
-      </div>
-    </div>
-  </div>
-  <div id="*BOTTOM_ID*" class="row *BOTTOM_CLASSES*">
-    *BOTTOM_HTML*
-  </div>
+<div layout ="BORDER_LAYOUT" class="container *CONTAINER_CLASSES*" style="*STYLE*">
+*ROWS*
 </div>
