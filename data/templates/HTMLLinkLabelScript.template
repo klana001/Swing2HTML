@@ -1,0 +1,2 @@
+document.getElementById("*ID*").onclick = function(){ displayCard("*CARD_PANEL_ID*","*CARD_NAME*");};
+

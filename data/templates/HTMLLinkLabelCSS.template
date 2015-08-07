@@ -1,0 +1,9 @@
+.mouseOver{
+cursor: pointer;
+}
+
+.mouseOver:hover{
+
+font-weight:bold;
+
+}
