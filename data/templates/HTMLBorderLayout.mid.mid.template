@@ -1,0 +1,3 @@
+	      <div layout ="BORDER_LAYOUT_MID_MID"  id="*MID_ID*" class="cell alignMiddle *MID_CLASSES*">
+	        *MID_HTML*
+	      </div>

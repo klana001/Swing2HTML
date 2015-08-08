@@ -1,3 +1,3 @@
-      <div id="*ID*" class="cell *CLASSES*">
+      <div id="*ID*" class="cell alignMiddle *CLASSES*">
         *HTML*
       </div>

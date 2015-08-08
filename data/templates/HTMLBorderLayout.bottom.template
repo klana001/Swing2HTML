@@ -1,0 +1,6 @@
+  <div layout ="BORDER_LAYOUT_BOTTOM" id="*BOTTOM_ID*" class="row *BOTTOM_CLASSES*">
+  	<div layout ="BORDER_LAYOUT_BOTTOM" class="cell alignBottom">
+    	*BOTTOM_HTML*
+    </div>
+  </div>
+

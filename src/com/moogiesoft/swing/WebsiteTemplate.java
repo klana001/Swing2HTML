@@ -206,8 +206,18 @@ public class WebsiteTemplate extends JPanel
 //		JLabel label_2 = new JLabel("Category");
 //		categoryPanel.add(label_2);
 		
-		JLabel label_3 = new JLabel("Category");
-		categoryPanel.add(label_3);
+		CustomerFavouriatesPanel customerFavoriatesPanel = new CustomerFavouriatesPanel();
+		for (int i=0;i<20;i++)
+		{
+			customerFavoriatesPanel.addCustomerFavoriate(WebsiteTemplate.class.getResource("/data/pics/boutique.png"),"");
+		}
+		
+		cardPanel.add(customerFavoriatesPanel, "categoryPanel4");
+		JLabel lblCategory4= cardPanel.createLinkLabel("categoryPanel4","Category");
+		categoryPanel.add(lblCategory4);
+		
+//		JLabel label_3 = new JLabel("Category");
+//		categoryPanel.add(label_3);
 		
 		JPanel navPanel2 = new JPanel();
 		navPanel1.add(navPanel2, BorderLayout.SOUTH);
@@ -273,6 +283,7 @@ public class WebsiteTemplate extends JPanel
 		
 		mainCentreCentrePanel.add(cardPanel, BorderLayout.CENTER);
 		cardPanel.setLayout(new CardLayout(0, 0));
+		
 		
 
 	}

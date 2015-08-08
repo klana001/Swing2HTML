@@ -1,0 +1,6 @@
+<div class="container centred *CONTAINER_CLASSES*">
+  <div class="container" >
+    *IMAGE_HTML*
+  </div>
+</div>
+

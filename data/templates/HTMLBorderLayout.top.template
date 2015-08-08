@@ -1,0 +1,5 @@
+  <div layout ="BORDER_LAYOUT_TOP" id="*TOP_ID*" class="row *TOP_CLASSES*" >
+  	<div layout ="BORDER_LAYOUT_TOP" class="cell alignTop">
+    	*TOP_HTML*
+    </div>
+  </div>

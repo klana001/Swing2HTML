@@ -1,0 +1,3 @@
+	      <div layout ="BORDER_LAYOUT_MID_LEFT"  id="*LEFT_ID*" class="cell alignLeft *LEFT_CLASSES*">
+	        *LEFT_HTML*
+	      </div>

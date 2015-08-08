@@ -1,0 +1,9 @@
+  <div layout ="BORDER_LAYOUT_MID" class="row" >
+  	<div layout ="BORDER_LAYOUT_MID"class="cell alignMiddle">
+	  <div layout ="BORDER_LAYOUT_MID" class="container cell-expandToFill">
+	  	 <div layout ="BORDER_LAYOUT_MID_CELLS" class="row">
+	    	*CELLS*
+	     </div>
+	  </div>
+	</div>
+  </div>
