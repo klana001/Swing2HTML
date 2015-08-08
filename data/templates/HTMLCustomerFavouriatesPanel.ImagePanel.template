@@ -1,6 +1,7 @@
-<div class="container centred *CONTAINER_CLASSES*">
+<div class="container centred horizontalScroll *CONTAINER_CLASSES*">
   <div class="container" >
+    <div class="row" >
     *IMAGE_HTML*
+    </div>
   </div>
 </div>
-

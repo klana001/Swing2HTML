@@ -1,4 +1,3 @@
-<div class="padded">
+<div id="*ID*" class="cell paddedImage alignMiddle">
    *IMAGE_HTML*
 </div>
-

@@ -66,24 +66,27 @@ public class CustomerFavouriatesPanel extends JComponent
 		}
 	}
 	
-	final class ImagePanel extends JPanel implements ToHTML
+	public final class ImagePanel extends JPanel implements ToHTML
 	{
 		@Override
 		public String toHtml(HashMap<String, CSS> cssEntries, String prefixWhiteSpace, HashMap<String, List<String>> scripts)
 		{
-			String imagePanelhtml=htmlImageTemplate;
+			StringBuilder sb = new StringBuilder();
 			cssEntries.put("horizontalScroll",cssTemplate);
 			for (CustomerFavoriate favoriate : favoriates)
 			{
+				String imagePanelhtml=htmlImageTemplate;
 				String id = ""+Math.random();
 				cardPanel.add(new JLabel("Text to go here...."+id),id);
-				LinkLabel linkLabel = cardPanel.createLinkLabel(id, favoriate.image);
-				imagePanelhtml.replace("*IMAGE_PANEL*",linkLabel.toHtml(cssEntries, prefixWhiteSpace, scripts));
+				LinkLabel linkLabel = cardPanel.createLinkLabel(id, favoriate.image.url);
+				imagePanelhtml = imagePanelhtml.replace("*IMAGE_HTML*",linkLabel.toHtml(cssEntries, prefixWhiteSpace, scripts));
+				imagePanelhtml = imagePanelhtml.replace("*START*", prefixWhiteSpace);
+				sb.append(imagePanelhtml);
 			}
 
 			
 			String html=htmlTemplate;
-			html=html.replace("*IMAGE_PANEL*", imagePanelhtml);
+			html=html.replace("*IMAGE_HTML*", sb.toString());
 
 			return html;
 		}
@@ -105,9 +108,11 @@ public class CustomerFavouriatesPanel extends JComponent
 	{
 		String relativePath;
 		BufferedImage image;
+		URL url;
 		
 		public URLImage(URL url)
 		{
+			this.url= url;
 			try
 			{
 				relativePath= url.toString().substring(url.toString().indexOf(Swing2HTML.RESOURCE_PATH)+Swing2HTML.RESOURCE_PATH.length()+1,url.toString().length());
@@ -144,12 +149,12 @@ public class CustomerFavouriatesPanel extends JComponent
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane,BorderLayout.SOUTH);
 		
-		imagePanel = new JPanel();
+		imagePanel = new ImagePanel();
 		scrollPane.setViewportView(imagePanel);
 	}
 	
 	List<CustomerFavoriate> favoriates = new ArrayList<CustomerFavouriatesPanel.CustomerFavoriate>();
-	private JPanel imagePanel;
+	private ImagePanel imagePanel;
 
 
 //	@Override

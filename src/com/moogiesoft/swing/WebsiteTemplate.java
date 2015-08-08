@@ -206,7 +206,7 @@ public class WebsiteTemplate extends JPanel
 //		JLabel label_2 = new JLabel("Category");
 //		categoryPanel.add(label_2);
 		
-		CustomerFavouriatesPanel customerFavoriatesPanel = new CustomerFavouriatesPanel();
+		CustomerFavouriatesPanel customerFavoriatesPanel = new CustomerFavouriatesPanel(cardPanel);
 		for (int i=0;i<20;i++)
 		{
 			customerFavoriatesPanel.addCustomerFavoriate(WebsiteTemplate.class.getResource("/data/pics/boutique.png"),"");

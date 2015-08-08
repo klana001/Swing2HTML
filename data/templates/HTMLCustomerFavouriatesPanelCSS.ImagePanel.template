@@ -6,5 +6,7 @@
 
 }
 
-.imagePadding
+.paddedImage img
 {
+	padding: 10px;
+}

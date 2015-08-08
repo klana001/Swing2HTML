@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.LayoutManager;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -132,6 +133,11 @@ public class CardPanel extends JPanel implements ToHTML
 	public LinkLabel createLinkLabel(String namedCard,String displayText)
 	{
 		return new LinkLabel(this,namedCard,displayText);
+	}
+	
+	public LinkLabel createLinkLabel(String namedCard,URL imageURL)
+	{
+		return new LinkLabel(this,namedCard,imageURL);
 	}
 	
 	public Component getCardForName(String name)

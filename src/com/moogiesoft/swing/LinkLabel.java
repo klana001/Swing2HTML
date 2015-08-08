@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import com.moogiesoft.html.CSS;
@@ -58,10 +59,12 @@ public class LinkLabel extends JLabel implements ToHTML
 	private CardPanel cardPanel;
 	private String cardName;
 
-	public LinkLabel(CardPanel cardPanel, String cardName, String displayText) {
+	private LinkLabel(CardPanel cardPanel, String cardName, String displayText, URL imageURL)
+	{
 		this.cardPanel=cardPanel;
 		this.cardName=cardName;
-		setText(displayText);
+		if (displayText!=null) setText(displayText);
+		if (imageURL!=null) setIcon(new ImageIcon(imageURL));
 		
 		addMouseListener(new MouseListener() {
 			
@@ -95,6 +98,15 @@ public class LinkLabel extends JLabel implements ToHTML
 		
 	}
 
+	public LinkLabel(CardPanel cardPanel, String cardName, URL imageURL) {
+		this(cardPanel,cardName,null,imageURL);
+	}
+	
+	public LinkLabel(CardPanel cardPanel, String cardName, String displayText)
+	{
+		this(cardPanel,cardName,displayText,null);
+	}
+
 	@Override
 	public String toHtml(HashMap<String, CSS> cssEntries, String prefixWhiteSpace,
 			HashMap<String, List<String>> scripts) {
@@ -102,7 +114,7 @@ public class LinkLabel extends JLabel implements ToHTML
 		
 			cssEntries.put("HTMLLinkLabelCSS.template",cssTemplate);
 			String id= Swing2HTML.getID(this);
-			String html = "<span class=\"mouseOver\" id=\""+id+"\">"+HTMLLabel.toHtml(this, cssEntries, prefixWhiteSpace, scripts)+"</span>\n";
+			String html = "<span class=\"mouseOver mouseOverImg\" id=\""+id+"\">"+HTMLLabel.toHtml(this, cssEntries, prefixWhiteSpace, scripts)+"</span>\n";
 		
 			
 			String script = LinkLabel.script;

@@ -22,6 +22,7 @@ import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
+import com.moogiesoft.swing.CustomerFavouriatesPanel;
 import com.moogiesoft.swing.HTMLBorderLayout;
 import com.moogiesoft.swing.HTMLFlowLayout;
 import com.moogiesoft.swing.HTMLGridLayout;
@@ -118,7 +119,10 @@ public class Swing2HTML
 	public static String toHtml(Component component, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		String html= "UNKNOWN Component: "+component.getClass().getSimpleName();
-		
+		if (component instanceof CustomerFavouriatesPanel.ImagePanel)
+		{
+			System.out.println("Asfsdf");
+		}
 		if (component instanceof ToHTML)
 		{
 			html = ((ToHTML) component).toHtml( cssEntries, prefixWhiteSpace,scripts);
