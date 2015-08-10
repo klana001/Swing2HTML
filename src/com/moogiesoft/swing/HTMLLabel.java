@@ -15,6 +15,7 @@ import java.util.Set;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
@@ -28,6 +29,7 @@ public class HTMLLabel {
 	static String htmlTemplate;
 	static String htmlImageTemplate;
 	static CSS cssTemplate;
+	private static String imageLabelScriptTemplate;
 	
 	static
 	{
@@ -46,6 +48,11 @@ public class HTMLLabel {
 			
 			sb.setLength(0);
 			
+//			Files.readAllLines(Paths.get("data/templates/HTMLLabelImageScript.template")).stream().forEach(line->sb.append(line+"\n"));//,
+//			imageLabelScriptTemplate=sb.toString();
+//		
+//			sb.setLength(0);
+			
 			Files.readAllLines(Paths.get("data/templates/HTMLLabelCSS.template")).stream().forEach(line->sb.append(line+"\n"));
 			cssTemplate = new CSS();
 			cssTemplate.className="HTMLLabelCSS.template";
@@ -57,22 +64,46 @@ public class HTMLLabel {
 		}
 	}
 
-	public static String toHtml(JLabel label,HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
+	public static String toHtml(Component label,HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts, boolean fitToContainer)
 	{
-		
+		Icon icon;
+		String text;
+		if (label instanceof JButton)
+		{
+			icon = ((JButton) label).getIcon();
+			text = ((JButton) label).getText();
+		}
+		else if (label instanceof JLabel)
+		{
+			icon = ((JLabel) label).getIcon();
+			text = ((JLabel) label).getText();
+		}
+		else
+		{
+			throw new RuntimeException("label not Jbutton or JLabel");
+		}
 		prefixWhiteSpace+="  ";
 		String html ="";
 		
 		CSS style;
-		if (label.getIcon()!=null)
+		if (icon!=null)
 		{
 			try
 			{
-				Class<? extends Icon> clazz = label.getIcon().getClass();
+				List<String> loadedScripts =  scripts.get(HTMLMain.LOADED);
+				if (loadedScripts==null)
+				{
+					loadedScripts= new ArrayList<String>();
+					scripts.put(HTMLMain.LOADED,loadedScripts);
+				}
+				
+				
+				
+				Class<? extends Icon> clazz = icon.getClass();
 				Field urlField = clazz.getDeclaredField("location");
 				urlField.setAccessible(true);
 	
-				URL location = (URL) urlField.get(label.getIcon());
+				URL location = (URL) urlField.get(icon);
 				String relativeLocation = location.toString().substring(location.toString().indexOf(Swing2HTML.RESOURCE_PATH)+Swing2HTML.RESOURCE_PATH.length()+1, location.toString().length());
 				
 //				HashMap<Style, String> extraStyling = new HashMap();
@@ -84,6 +115,13 @@ public class HTMLLabel {
 				
 				html = htmlImageTemplate.replace("*START*", prefixWhiteSpace);
 				html = html.replace("*URL*", relativeLocation);
+//				html = html.replace("*CLASSES*", fitToContainer?"scaleImage":"");
+				html = html.replace("*CLASSES*", "");
+
+//				String script=imageLabelScriptTemplate;
+//				script = script.replace("*ID*", Swing2HTML.getID(label));
+//				script = script.replace("*IMG_ID*", Swing2HTML.getID(label));
+
 //				html = html.replace("*WIDTH*", ""+label.getWidth());
 //				html = html.replace("*HEIGHT*", ""+label.getHeight());
 				
@@ -99,7 +137,7 @@ public class HTMLLabel {
 			
 			html = htmlTemplate.replace("*START*", prefixWhiteSpace);
 			html = html.replace("*CLASSES*", style!=null?style.className:"");
-			html = html.replace("*TEXT*", Swing2HTML.stringToHTMLString(label.getText()));
+			html = html.replace("*TEXT*", Swing2HTML.stringToHTMLString(text));
 			html = html.replace("*ID*", Swing2HTML.getID(label) );
 		}
 

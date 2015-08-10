@@ -15,13 +15,14 @@ import java.util.List;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import com.moogiesoft.html.CSS;
 import com.moogiesoft.html.Swing2HTML;
 import com.moogiesoft.html.ToHTML;
 
-public class LinkLabel extends JLabel implements ToHTML
+public class LinkLabel extends JButton implements ToHTML
 {
 //	static String htmlTemplate;
 //	static String htmlImageTemplate;
@@ -61,11 +62,16 @@ public class LinkLabel extends JLabel implements ToHTML
 
 	private LinkLabel(CardPanel cardPanel, String cardName, String displayText, URL imageURL)
 	{
+		setBorder(null);
+		setMargin(null);
 		this.cardPanel=cardPanel;
 		this.cardName=cardName;
 		if (displayText!=null) setText(displayText);
 		if (imageURL!=null) setIcon(new ImageIcon(imageURL));
 		
+		
+		
+		System.out.println("cardName: "+cardName+" imageURL: "+imageURL);
 		addMouseListener(new MouseListener() {
 			
 			@Override
@@ -114,7 +120,7 @@ public class LinkLabel extends JLabel implements ToHTML
 		
 			cssEntries.put("HTMLLinkLabelCSS.template",cssTemplate);
 			String id= Swing2HTML.getID(this);
-			String html = "<span class=\"mouseOver mouseOverImg\" id=\""+id+"\">"+HTMLLabel.toHtml(this, cssEntries, prefixWhiteSpace, scripts)+"</span>\n";
+			String html = "<span class=\"mouseOver mouseOverImg\" id=\""+id+"\">"+HTMLLabel.toHtml(this, cssEntries, prefixWhiteSpace, scripts,false)+"</span>\n";
 		
 			
 			String script = LinkLabel.script;

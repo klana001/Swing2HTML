@@ -3,6 +3,7 @@ package com.moogiesoft.swing;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -76,10 +77,8 @@ public class CustomerFavouriatesPanel extends JComponent
 			for (CustomerFavoriate favoriate : favoriates)
 			{
 				String imagePanelhtml=htmlImageTemplate;
-				String id = ""+Math.random();
-				cardPanel.add(new JLabel("Text to go here...."+id),id);
-				LinkLabel linkLabel = cardPanel.createLinkLabel(id, favoriate.image.url);
-				imagePanelhtml = imagePanelhtml.replace("*IMAGE_HTML*",linkLabel.toHtml(cssEntries, prefixWhiteSpace, scripts));
+
+				imagePanelhtml = imagePanelhtml.replace("*IMAGE_HTML*",favoriate.linkLabel.toHtml(cssEntries, prefixWhiteSpace, scripts));
 				imagePanelhtml = imagePanelhtml.replace("*START*", prefixWhiteSpace);
 				sb.append(imagePanelhtml);
 			}
@@ -96,11 +95,11 @@ public class CustomerFavouriatesPanel extends JComponent
 	final class CustomerFavoriate
 	{
 		String text;
-		URLImage image;
-		public CustomerFavoriate(String text, URLImage image) {
+		LinkLabel linkLabel;
+		public CustomerFavoriate(String text, LinkLabel linkLabel) {
 			super();
 			this.text = text;
-			this.image = image;
+			this.linkLabel = linkLabel;
 		}
 	}
 	
@@ -165,12 +164,14 @@ public class CustomerFavouriatesPanel extends JComponent
 
 	public void addCustomerFavoriate(URL image, String text)
 	{
-		CustomerFavoriate favoriate = new CustomerFavoriate(text, new URLImage(image));
+		String id = ""+new Random().nextInt(Integer.MAX_VALUE);
+		cardPanel.add(new JLabel("Text to go here...."+id),id);
+		LinkLabel linkLabel = cardPanel.createLinkLabel(id, image);
+
+		imagePanel.add(linkLabel);
+
+		CustomerFavoriate favoriate = new CustomerFavoriate(text, linkLabel);
 		favoriates.add(favoriate);
-		
-		JLabel imageIcon = new JLabel(new ImageIcon(image)); 
-		imagePanel.add(imageIcon);
-		
 		
 	}
 	

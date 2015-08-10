@@ -1,0 +1,10 @@
+
+{
+	var logoHeight = document.getElementById('*IMG_ID*').clientHeight;
+	var containerHeight = document.getElementById('*ID*').clientHeight;
+	if (logoHeight < containerHeight) {
+	    var margintop = (containerHeight - logoHeight) / 2;
+	    document.getElementById("*IMG_ID*").style["margin-top"] = margintop+"px";
+	}
+}
+

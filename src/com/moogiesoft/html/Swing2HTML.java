@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -131,11 +132,9 @@ public class Swing2HTML
 		{
 			html=toHtml(((JFrame) component).getContentPane(),cssEntries,prefixWhiteSpace,scripts);
 		}
-		else if (component instanceof JLabel)
+		else if (component instanceof JButton || component instanceof JLabel)
 		{
-			JLabel label = (JLabel) component;
-			
-			html= HTMLLabel.toHtml(label,cssEntries,prefixWhiteSpace,scripts);
+			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,true);
 		}
 		else if (component instanceof Container)
 		{

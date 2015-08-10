@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
@@ -185,13 +186,13 @@ public class WebsiteTemplate extends JPanel
 		JPanel categoryPanel1 = new JPanel();
 		categoryPanel1.setBackground(Color.CYAN);
 		cardPanel.add(categoryPanel1, "categoryPanel1");
-		JLabel lblCategory= cardPanel.createLinkLabel("categoryPanel1","Category");
+		JButton lblCategory= cardPanel.createLinkLabel("categoryPanel1","Category");
 		categoryPanel.add(lblCategory);
 		
 		JPanel categoryPanel2 = new JPanel();
 		categoryPanel2.setBackground(Color.ORANGE);
 		cardPanel.add(categoryPanel2, "categoryPanel2");
-		JLabel lblCategory2= cardPanel.createLinkLabel("categoryPanel2","Category");
+		JButton lblCategory2= cardPanel.createLinkLabel("categoryPanel2","Category");
 		categoryPanel.add(lblCategory2);
 		
 		
@@ -200,21 +201,13 @@ public class WebsiteTemplate extends JPanel
 		roundedBackgroundBoxPanel1.setBackground(Color.PINK);
 		roundedBackgroundBoxPanel1.setBackgroundBox(0, 0, 35);
 		cardPanel.add(roundedBackgroundBoxPanel1, "categoryPanel3");
-		JLabel lblCategory3= cardPanel.createLinkLabel("categoryPanel3","Category");
+		JButton lblCategory3= cardPanel.createLinkLabel("categoryPanel3","Category");
 		categoryPanel.add(lblCategory3);
 		
 //		JLabel label_2 = new JLabel("Category");
 //		categoryPanel.add(label_2);
 		
-		CustomerFavouriatesPanel customerFavoriatesPanel = new CustomerFavouriatesPanel(cardPanel);
-		for (int i=0;i<20;i++)
-		{
-			customerFavoriatesPanel.addCustomerFavoriate(WebsiteTemplate.class.getResource("/data/pics/boutique.png"),"");
-		}
-		
-		cardPanel.add(customerFavoriatesPanel, "categoryPanel4");
-		JLabel lblCategory4= cardPanel.createLinkLabel("categoryPanel4","Category");
-		categoryPanel.add(lblCategory4);
+	
 		
 //		JLabel label_3 = new JLabel("Category");
 //		categoryPanel.add(label_3);
@@ -231,7 +224,12 @@ public class WebsiteTemplate extends JPanel
 		infoPanel.add(infoOptionsPanel, BorderLayout.SOUTH);
 		infoOptionsPanel.setLayout(new GridLayout(5, 0, 0, 0));
 		
-		JLabel lblHome = new JLabel("Home");
+//		JLabel lblHome = new JLabel("Home");
+//		infoOptionsPanel.add(lblHome);
+
+		HomePanel homePanel = new HomePanel(cardPanel);
+		cardPanel.add(homePanel, "categoryPanel4");
+		JButton lblHome= cardPanel.createLinkLabel("categoryPanel4","Home");
 		infoOptionsPanel.add(lblHome);
 		
 		JLabel lblCatalogue = new JLabel("Catalogue");
