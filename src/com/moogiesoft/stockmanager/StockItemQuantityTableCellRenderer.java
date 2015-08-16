@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 
-public class StockItemNameTableCellRenderer extends HTMLTableCellRenderer {
+public class StockItemQuantityTableCellRenderer extends HTMLTableCellRenderer {
 //	public StockItemNameTableCellRenderer(DefaultTableModel model) {
 //		super(model);
 //		// TODO Auto-generated constructor stub
@@ -30,13 +30,13 @@ public class StockItemNameTableCellRenderer extends HTMLTableCellRenderer {
 		if (value!=null)
 		{
 			StockItem stockItem= ((StockItem) value);
-			
-			if (stockItem.getHighLightedName() !=null)
+			if (!stockItem.isNew())
 			{
-				 result = super.getTableCellRendererComponent(table,stockItem.getHighLightedName(), isSelected,
-						hasFocus, row, column);
+			
+				result = super.getTableCellRendererComponent(table,""+stockItem.getQuantity(), isSelected,
+							hasFocus, row, column);
+				result.setEnabled(!stockItem.isDeleted());
 			}
-			result.setEnabled(!stockItem.isDeleted());
 		}
 		return result;
 	}

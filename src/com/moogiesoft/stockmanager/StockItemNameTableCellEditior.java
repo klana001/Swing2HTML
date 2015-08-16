@@ -12,6 +12,7 @@ public class StockItemNameTableCellEditior extends HTMLTableCellEditor
             boolean isSelected, int rowIndex, int vColIndex) {
     	
     	stockItem=(StockItem)value;
+    	stockItem.setNew(false);
         return super.getTableCellEditorComponent(table, stockItem.getName(), isSelected, rowIndex, vColIndex);
     }
     public Object getCellEditorValue() {

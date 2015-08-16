@@ -4,14 +4,20 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class HTMLTableCellRenderer extends DefaultTableCellRenderer {
 	
+//	private DefaultTableModel model;
+//	public HTMLTableCellRenderer(DefaultTableModel model) {
+//		this.model=model;
+//	}
 //	private JLabel jLabel = new JLabel();  
 	public Component getTableCellRendererComponent(JTable table, Object value,
 			boolean isSelected, boolean hasFocus, int row, int column) {
 
 		String txt = String.valueOf(value);
+		txt= txt.replace("\n", "<BR>");
 		txt = String.format("<html>%s</html>", txt);
 
 //		jLabel.setText(txt);
@@ -27,8 +33,12 @@ public class HTMLTableCellRenderer extends DefaultTableCellRenderer {
 //		}
 		// Delegate to superclass which will set the label text, background,
 		// etc.
-		return super.getTableCellRendererComponent(table, txt, isSelected,
+		Component component = super.getTableCellRendererComponent(table, txt, isSelected,
 				hasFocus, row, column);
+		
+//		StockItem item = (StockItem) model.getValueAt(row, 0);
+//		component.setEnabled(!item.isDeleted());
+		return component;
 //		return jLabel;
 
 	}

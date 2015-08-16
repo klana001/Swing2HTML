@@ -4,19 +4,20 @@ import java.awt.Image;
 import java.util.EventObject;
 
 import javax.swing.AbstractCellEditor;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.CellEditorListener;
 import javax.swing.table.TableCellEditor;
 
-import org.jdesktop.swingx.JXImagePanel;
-
 
 public class ImageTableCellEditor extends AbstractCellEditor implements
         TableCellEditor {
 	
-	JXImagePanel imagePanel = new JXImagePanel();
+private Image image;
+//	JXImagePanel imagePanel = new JXImagePanel();
 //	
 //	@Override
 //	public Component getTableCellRendererComponent(JTable table, Object value,
@@ -74,17 +75,22 @@ public class ImageTableCellEditor extends AbstractCellEditor implements
 //        }
 //        component.setText((String)value);
         
-		Image image = (Image) value;
-		imagePanel.setImage(image);
+		image = (Image) value;
+		JLabel label = new JLabel();
+		if (image!=null)
+		{
+			label.setIcon(new ImageIcon(image));
+		}
+
         
 //        if (table.getRowHeight(rowIndex)<component.getPreferredSize().height);
 //        {
 //        	table.setRowHeight(rowIndex,component.getPreferredSize().height);
 //        }
-        return imagePanel;
+        return label;
     }
     public Object getCellEditorValue() {
-        return imagePanel.getImage();
+        return image;
     }
 
 }
