@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 
 public class StockItem implements Serializable
 {
-	public static final int SMALL_IMAGE_SIZE = 48;
+
 
 
 	public interface StockItemListener
@@ -41,14 +41,12 @@ public class StockItem implements Serializable
 	 */
 	private static final long serialVersionUID = -5475801832215315346L;
 	
-	private transient BufferedImage smallImage;
-	private transient BufferedImage largeImage;
 	private transient List<StockItemListener> stockItemListeners;
+	
+	private List<StockImage> images;
 	private boolean isNew;
 //	private transient int[] imagedata;
-	private String path;
-	private int imageWidth;
-	private int imageHeight;
+
 	private Date creationDate;
 	private boolean deleted;
 
@@ -207,32 +205,40 @@ public class StockItem implements Serializable
 	}
 
 	public BufferedImage getSmallImage() {
-		if (smallImage==null)
+		if (images==null || images.size()==0 || images.get(0)==null || images.get(0).getThumbnailImage()==null)
 		{
 			contructImages();
 		}
 	
-		return smallImage;
+		if (images.size()>0)
+		{
+			return images.get(0).getThumbnailImage();
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 
 	public BufferedImage getLargeImage() {
-		if (largeImage==null)
+		if (images==null || images.size()==0 || images.get(0)==null || images.get(0).getLargeImage()==null)
 		{
 			contructImages();
 		}
-		
-		return largeImage;
+	
+		if (images.size()>0)
+		{
+			return images.get(0).getLargeImage();
+		}
+		else
+		{
+			return null;
+		}
 	}
 
-	public void setLargeImage(BufferedImage largeImage) {
-		imageWidth=largeImage.getWidth();
-		imageHeight=largeImage.getHeight();
-		this.largeImage = largeImage;
-//		BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-//		image.getGraphics().drawImage(largeImage,0,0,null);
-////		imagedata=((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-
+	public void setImages(List<StockImage> images) {
+		this.images=images;
 		contructImages();
 		updated();
 	}
@@ -280,60 +286,16 @@ private void updated() {
 	
 	private void contructImages()
 	{
-		if (largeImage== null && path!=null) 
+		if (images==null)
 		{
-			try
-			{
-				File file = new File(path);
-				if (file.exists())
-				{
-					largeImage = ImageIO.read(file);
-					imageWidth=largeImage.getWidth();
-					imageHeight=largeImage.getHeight();
-//					BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-//					image.getGraphics().drawImage(largeImage,0,0,null);
-//					imagedata=((DataBufferInt)image.getRaster().getDataBuffer()).getData();
-				}
-				else
-				{
-					imageWidth=40;
-					imageHeight=40;
-					largeImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-					Graphics2D g = ((Graphics2D) largeImage.getGraphics());
-					g.setColor(Color.white);
-					g.drawString("Not", 0, 20);
-					g.drawString("Found", 0, 40);
-//
-//					imagedata=((DataBufferInt)largeImage.getRaster().getDataBuffer()).getData();
-				}
-
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
+			images=new ArrayList<StockImage>();
+	
 		}
-		if (imageWidth>0)
+		
+		for(StockImage image : images)
 		{
-			BufferedImage image = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_RGB);
-			image.getGraphics().drawImage(largeImage, 0, 0, null);
-//			System.arraycopy(imagedata, 0, ((DataBufferInt)image.getRaster().getDataBuffer()).getData(),0,imagedata.length);
 			
-			GraphicsEnvironment environment = 
-			      GraphicsEnvironment.getLocalGraphicsEnvironment();
-			    
-			    GraphicsDevice device = 
-			      environment.getDefaultScreenDevice();
-			      
-			    GraphicsConfiguration config = device.getDefaultConfiguration();
-			    
-			    // Create an image that does not support transparency (Opaque)
-			    largeImage = config.createCompatibleImage(imageWidth, imageHeight, 
-			      Transparency.OPAQUE);
-			    
-			    largeImage.getGraphics().drawImage(image, 0,0,null);
-			    smallImage=config.createCompatibleImage(SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE, 
-					      Transparency.OPAQUE);
-			    smallImage.getGraphics().drawImage(largeImage.getScaledInstance(SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE, Image.SCALE_AREA_AVERAGING),0,0,null);
+			image.construct();
 		}
 	}
 	
@@ -380,11 +342,11 @@ private void updated() {
 //		}
 //		return result;
 //	}
-
-	public void setImagePath(String path) {
-		this.path=path;
-		updated();
-	}
+//
+//	public void setImagePath(String path) {
+//		this.path=path;
+//		updated();
+//	}
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -468,5 +430,9 @@ private void updated() {
 	{
 		this.modifiedDate=modifiedDate;
 		
+	}
+
+	public List<StockImage> getImages() {
+		return images;
 	}
 }

@@ -104,7 +104,8 @@ public class HTMLLabel {
 				urlField.setAccessible(true);
 	
 				URL location = (URL) urlField.get(icon);
-				String relativeLocation = location.toString().substring(location.toString().indexOf(Swing2HTML.RESOURCE_PATH)+Swing2HTML.RESOURCE_PATH.length()+1, location.toString().length());
+				String locationStr = location.toString().replace("%5c", "/");
+				String relativeLocation = locationStr.substring(locationStr.indexOf(Swing2HTML.RESOURCE_PATH)+Swing2HTML.RESOURCE_PATH.length()+1, locationStr.length());
 				
 //				HashMap<Style, String> extraStyling = new HashMap();
 //				extraStyling.put(Style.BACKGROUND, "background-image: url(\""+relativeLocation+"\");");
@@ -119,11 +120,17 @@ public class HTMLLabel {
 				html = html.replace("*CLASSES*", "");
 
 //				String script=imageLabelScriptTemplate;
+				
+				
+				
 //				script = script.replace("*ID*", Swing2HTML.getID(label));
 //				script = script.replace("*IMG_ID*", Swing2HTML.getID(label));
 
-//				html = html.replace("*WIDTH*", ""+label.getWidth());
-//				html = html.replace("*HEIGHT*", ""+label.getHeight());
+				if (fitToContainer)
+				{
+					html = html.replace("*WIDTH*", "100%");
+					html = html.replace("*HEIGHT*", "100%");
+				}
 				
 			} catch (Exception e)
 			{

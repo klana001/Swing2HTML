@@ -81,7 +81,7 @@ public class CardPanel extends JPanel implements ToHTML
 				{
 					List<String> masterCategoryScriptList = scripts.get(scriptCategory);
 					
-					if (masterCategoryScriptList!=null)
+					if (masterCategoryScriptList==null)
 					{
 						masterCategoryScriptList = new ArrayList<String>();
 						scripts.put(scriptCategory, masterCategoryScriptList);

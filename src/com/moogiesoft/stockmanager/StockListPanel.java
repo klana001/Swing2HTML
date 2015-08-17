@@ -258,7 +258,7 @@ public class StockListPanel extends JPanel implements StockItemListener
 		stockTable.getColumn(QUANTITY_COLUMN_INDEX).setHeaderValue("Qty");
 		stockTable.getColumn(PRICE_COLUMN_INDEX).setHeaderValue("Price");
 		
-		stockTable.getColumn(IMAGE_COLUMN_INDEX).setMaxWidth(StockItem.SMALL_IMAGE_SIZE+4);
+		stockTable.getColumn(IMAGE_COLUMN_INDEX).setMaxWidth(StockImage.SMALL_IMAGE_SIZE+4);
 		stockTable.getColumn(NAME_COLUMN_INDEX).setPreferredWidth(60);
 		stockTable.getColumn(DELETED_COLUMN_INDEX).setMaxWidth(40);
 		stockTable.getColumn(QUANTITY_COLUMN_INDEX).setMaxWidth(40);

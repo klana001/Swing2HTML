@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import com.moogiesoft.stockmanager.StockDatabase;
+
 import java.awt.Font;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -185,7 +187,17 @@ public class WebsiteTemplate extends JPanel
 		
 		JPanel categoryPanel1 = new JPanel();
 		categoryPanel1.setBackground(Color.CYAN);
-		cardPanel.add(categoryPanel1, "categoryPanel1");
+//		cardPanel.add(categoryPanel1, "categoryPanel1");
+		StockDatabase stockDatabase = new StockDatabase();
+		try
+		{
+			stockDatabase.reload();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		StockItemPanel stockItemPanel = new StockItemPanel(stockDatabase.getNonDeletedStock().get(0));
+		cardPanel.add(stockItemPanel,"categoryPanel1");
 		JButton lblCategory= cardPanel.createLinkLabel("categoryPanel1","Category");
 		categoryPanel.add(lblCategory);
 		

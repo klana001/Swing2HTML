@@ -29,8 +29,10 @@ import com.moogiesoft.swing.HTMLFlowLayout;
 import com.moogiesoft.swing.HTMLGridLayout;
 import com.moogiesoft.swing.HTMLLabel;
 import com.moogiesoft.swing.HTMLMain;
+import com.moogiesoft.swing.ImagePanel;
 import com.moogiesoft.swing.MainPage;
 import com.moogiesoft.swing.NonInhieratibleBackground;
+import com.moogiesoft.swing.StretchJLabel;
 
 
 public class Swing2HTML
@@ -120,10 +122,10 @@ public class Swing2HTML
 	public static String toHtml(Component component, HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts)
 	{
 		String html= "UNKNOWN Component: "+component.getClass().getSimpleName();
-		if (component instanceof CustomerFavouriatesPanel.ImagePanel)
-		{
-			System.out.println("Asfsdf");
-		}
+//		if (component instanceof ImagePanel)
+//		{
+//			System.out.println("Asfsdf");
+//		}
 		if (component instanceof ToHTML)
 		{
 			html = ((ToHTML) component).toHtml( cssEntries, prefixWhiteSpace,scripts);
@@ -132,9 +134,13 @@ public class Swing2HTML
 		{
 			html=toHtml(((JFrame) component).getContentPane(),cssEntries,prefixWhiteSpace,scripts);
 		}
-		else if (component instanceof JButton || component instanceof JLabel)
+		else if (component instanceof StretchJLabel)
 		{
 			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,true);
+		}
+		else if (component instanceof JButton || component instanceof JLabel)
+		{
+			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,false);
 		}
 		else if (component instanceof Container)
 		{
