@@ -64,7 +64,7 @@ public class HTMLLabel {
 		}
 	}
 
-	public static String toHtml(Component label,HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts, boolean fitToContainer)
+	public static String toHtml(Component label,HashMap<String, CSS> cssEntries,String prefixWhiteSpace,HashMap<String, List<String>> scripts, boolean fitToContainer,boolean centredText)
 	{
 		Icon icon;
 		String text;
@@ -117,7 +117,14 @@ public class HTMLLabel {
 				html = htmlImageTemplate.replace("*START*", prefixWhiteSpace);
 				html = html.replace("*URL*", relativeLocation);
 //				html = html.replace("*CLASSES*", fitToContainer?"scaleImage":"");
-				html = html.replace("*CLASSES*", "");
+				if (centredText)
+				{
+					html = html.replace("*CLASSES*", "centred-text");
+				}
+				else
+				{
+					html = html.replace("*CLASSES*", "");
+				}
 
 //				String script=imageLabelScriptTemplate;
 				
@@ -143,7 +150,17 @@ public class HTMLLabel {
 			cssEntries.put("HTMLLabelCSS.template",cssTemplate);
 			
 			html = htmlTemplate.replace("*START*", prefixWhiteSpace);
-			html = html.replace("*CLASSES*", style!=null?style.className:"");
+			String classes = "";
+			if (centredText)
+			{
+				classes+="centred-text ";
+			}
+			if (style!=null)
+			{
+				classes+=style.className;
+			}
+
+			html = html.replace("*CLASSES*", classes);
 			html = html.replace("*TEXT*", Swing2HTML.stringToHTMLString(text));
 			html = html.replace("*ID*", Swing2HTML.getID(label) );
 		}

@@ -120,7 +120,7 @@ public class LinkLabel extends JButton implements ToHTML
 		
 			cssEntries.put("HTMLLinkLabelCSS.template",cssTemplate);
 			String id= Swing2HTML.getID(this);
-			String html = "<span class=\"mouseOver mouseOverImg\" id=\""+id+"\">"+HTMLLabel.toHtml(this, cssEntries, prefixWhiteSpace, scripts,false)+"</span>\n";
+			String html = "<span class=\"mouseOver mouseOverImg\" id=\""+id+"\">"+HTMLLabel.toHtml(this, cssEntries, prefixWhiteSpace, scripts,false,true)+"</span>\n";
 		
 			
 			String script = LinkLabel.script;

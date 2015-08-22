@@ -96,18 +96,11 @@ public class StockItemPanel extends JPanel {
 		panel_5.add(panel_6);
 		panel_6.setLayout(new BorderLayout(0, 20));
 		
-		JPanel panel_7 = new JPanel();
-		panel_6.add(panel_7, BorderLayout.NORTH);
-		panel_7.setLayout(new BorderLayout(0, 20));
-		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		panel_7.add(lblNewLabel_1, BorderLayout.WEST);
-		
 		JPanel panel_8 = new JPanel();
 		panel_6.add(panel_8, BorderLayout.CENTER);
 		panel_8.setLayout(new BorderLayout(0, 20));
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel(item.getDescription());
 		panel_8.add(lblNewLabel_2, BorderLayout.NORTH);
 		
 		JPanel panel_9 = new JPanel();
@@ -118,8 +111,12 @@ public class StockItemPanel extends JPanel {
 		panel_9.add(panel_10, BorderLayout.NORTH);
 		panel_10.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton = new JButton("New button");
-		panel_10.add(btnNewButton, BorderLayout.EAST);
+		PayPalAddToCartButton addButton = new PayPalAddToCartButton(item);
+
+		panel_10.add(addButton, BorderLayout.EAST);
+		
+		JLabel lblNewLabel_1 = new JLabel(item.getName());
+		panel_6.add(lblNewLabel_1, BorderLayout.NORTH);
 
 	}
 

@@ -84,9 +84,10 @@ public class WebsiteTemplate extends JPanel
 		lblH.setBackground(Color.DARK_GRAY);
 		panel_1.add(lblH);
 		
-		JLabel lblNewLabel_1 = new JLabel("Shopping cart");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		panel_1.add(lblNewLabel_1);
+//		JLabel lblNewLabel_1 = new JLabel("Shopping cart");
+//		lblNewLabel_1.setForeground(Color.WHITE);
+		PayPalViewCartButton cart2 = new PayPalViewCartButton();
+		panel_1.add(cart2);
 		
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.DARK_GRAY);
@@ -272,8 +273,9 @@ public class WebsiteTemplate extends JPanel
 		cartPanel.add(cartOptionsPanel, BorderLayout.SOUTH);
 		cartOptionsPanel.setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel("View Cart");
-		cartOptionsPanel.add(lblNewLabel);
+		PayPalViewCartButton cart1 = new PayPalViewCartButton();
+//		JLabel lblNewLabel = new JLabel("View Cart");
+		cartOptionsPanel.add(cart1);
 		
 		JLabel cartLabel = new JLabel("");
 		cartPanel.add(cartLabel, BorderLayout.NORTH);

@@ -136,12 +136,17 @@ public class Swing2HTML
 		}
 		else if (component instanceof StretchJLabel)
 		{
-			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,true);
+			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,true,true);
 		}
-		else if (component instanceof JButton || component instanceof JLabel)
+		else if (component instanceof JButton)
 		{
-			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,false);
+			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,false,true);
 		}
+		else if (component instanceof JLabel)
+		{
+			html= HTMLLabel.toHtml(component,cssEntries,prefixWhiteSpace,scripts,false,false);
+		}
+
 		else if (component instanceof Container)
 		{
 			Container container = (Container) component;
