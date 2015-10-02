@@ -58,6 +58,11 @@ public class PayPalAddToCartButton extends JButton implements ToHTML
 			HashMap<String, List<String>> scripts) {
 
 			String html = htmlTemplate;
+			
+			if (item.getPayPalId()==null)
+			{
+				throw new RuntimeException("Need to sync with paypal!");
+			}
 			html=html.replace("*PAY_PAL_ID*", item.getPayPalId());
 			
 		return html;

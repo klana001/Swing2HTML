@@ -67,6 +67,8 @@ public class StockItem implements Serializable
 	private String stockId;
 
 	private Date modifiedDate;
+
+	private String type;
 //	private Date lastPayPalSynchModifiedDate;
 //	
 //	public Date getLastPayPalSynchModifiedDate()
@@ -434,5 +436,16 @@ private void updated() {
 
 	public List<StockImage> getImages() {
 		return images;
+	}
+
+	public String getType()
+	{
+		return type;
+	}
+
+	public void setType(String type)
+	{
+		this.type=type;
+		
 	}
 }

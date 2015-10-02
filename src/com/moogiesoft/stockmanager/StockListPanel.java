@@ -48,10 +48,11 @@ public class StockListPanel extends JPanel implements StockItemListener
 	private static final int IMAGE_COLUMN_INDEX = 0;
 	private static final int NAME_COLUMN_INDEX = 1 ;
 	private static final int DESCRIPTION_COLUMN_INDEX = 2;
-	private static final int CREATED_DATE_COLUMN_INDEX = 3;
-	private static final int PRICE_COLUMN_INDEX = 4;
-	private static final int QUANTITY_COLUMN_INDEX = 5;
-	private static final int DELETED_COLUMN_INDEX=6;
+	private static final int TYPE_COLUMN_INDEX = 3;
+	private static final int CREATED_DATE_COLUMN_INDEX = 4;
+	private static final int PRICE_COLUMN_INDEX = 5;
+	private static final int QUANTITY_COLUMN_INDEX = 6;
+	private static final int DELETED_COLUMN_INDEX=7;
 //	private static final int SOLD_DATE_COLUMN_INDEX = 4;
 //	private static final int COST_COLUMN_INDEX= 5;
 //	private static final int SALE_PRICE_COLUMN_INDEX= 6;
@@ -239,6 +240,7 @@ public class StockListPanel extends JPanel implements StockItemListener
 		stockTable.getColumn(NAME_COLUMN_INDEX).setCellRenderer(new StockItemNameTableCellRenderer());
 		stockTable.getColumn(DESCRIPTION_COLUMN_INDEX).setCellRenderer(new StockItemDescriptionTableCellRenderer());
 		stockTable.getColumn(CREATED_DATE_COLUMN_INDEX).setCellRenderer(new StockItemCreatedDateTableCellRenderer());
+		stockTable.getColumn(TYPE_COLUMN_INDEX).setCellRenderer(new StockItemTypeTableCellRenderer());
 		stockTable.getColumn(DELETED_COLUMN_INDEX).setCellRenderer(new StockItemDeletedTableCellRenderer());
 		stockTable.getColumn(QUANTITY_COLUMN_INDEX).setCellRenderer(new StockItemQuantityTableCellRenderer());
 		stockTable.getColumn(PRICE_COLUMN_INDEX).setCellRenderer(new StockItemPriceTableCellRenderer());
@@ -246,6 +248,7 @@ public class StockListPanel extends JPanel implements StockItemListener
 		stockTable.getColumn(IMAGE_COLUMN_INDEX).setCellEditor(new StockItemImageTableCellEditor());
 		stockTable.getColumn(NAME_COLUMN_INDEX).setCellEditor(new StockItemNameTableCellEditior());
 		stockTable.getColumn(DESCRIPTION_COLUMN_INDEX).setCellEditor(new StockItemDescriptionTableCellEditior());
+		stockTable.getColumn(TYPE_COLUMN_INDEX).setCellEditor(new StockItemTypeTableCellEditior());
 		stockTable.getColumn(DELETED_COLUMN_INDEX).setCellEditor(new StockItemDeletedTableCellEditior());
 		stockTable.getColumn(QUANTITY_COLUMN_INDEX).setCellEditor(new StockItemQuantityTableCellEditior());
 		stockTable.getColumn(PRICE_COLUMN_INDEX).setCellEditor(new StockItemPriceTableCellEditior());
@@ -253,6 +256,7 @@ public class StockListPanel extends JPanel implements StockItemListener
 		stockTable.getColumn(IMAGE_COLUMN_INDEX).setHeaderValue("Image");
 		stockTable.getColumn(NAME_COLUMN_INDEX).setHeaderValue("Name");
 		stockTable.getColumn(DESCRIPTION_COLUMN_INDEX).setHeaderValue("Description");
+		stockTable.getColumn(TYPE_COLUMN_INDEX).setHeaderValue("Type");
 		stockTable.getColumn(CREATED_DATE_COLUMN_INDEX).setHeaderValue("Created on");
 		stockTable.getColumn(DELETED_COLUMN_INDEX).setHeaderValue("Del");
 		stockTable.getColumn(QUANTITY_COLUMN_INDEX).setHeaderValue("Qty");
@@ -263,6 +267,7 @@ public class StockListPanel extends JPanel implements StockItemListener
 		stockTable.getColumn(DELETED_COLUMN_INDEX).setMaxWidth(40);
 		stockTable.getColumn(QUANTITY_COLUMN_INDEX).setMaxWidth(40);
 		stockTable.getColumn(PRICE_COLUMN_INDEX).setMaxWidth(50);
+		stockTable.getColumn(TYPE_COLUMN_INDEX).setMaxWidth(80);
 		
 		invalidate();
 		repaint();
