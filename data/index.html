@@ -1,0 +1,516 @@
+<html>
+<head>
+<style>
+#ornament_button 
+{
+	left: 424px;
+	top: 238px;
+	width: 207px;
+	height: 84px;
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/label_christmas_ornaments.png) center top no-repeat;
+}
+
+#ornament_button:hover{
+		background: url(pics/label_christmas_ornaments_hover.png);
+}
+
+#jewellery_button 
+{
+	left: 747px;
+	top: 255px;
+	width: 184px;
+	height: 46px;
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/label_jewellery.png) center top no-repeat;
+}
+
+#jewellery_button:hover{
+		background: url(pics/label_jewellery_hover.png);
+}
+
+#email_button 
+{
+	left: 236px;
+	top: 500px;
+	width: 68px;
+	height: 68px;
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/mail.png) center top no-repeat;
+}
+
+#email_button:hover{
+		background: url(pics/mail_hover.png);
+}
+
+#etsy_button 
+{
+	left: 163px;
+	top: 500px;
+	width: 68px;
+	height: 68px;
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/etsy.png) center top no-repeat;
+}
+
+#etsy_button:hover{
+		background: url(pics/etsy_hover.png);
+}
+
+#facebook_button 
+{
+	left: 91px;
+	top: 501px;
+	width: 67px;
+	height: 68px;
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/facebook.png) center top no-repeat;
+}
+
+#facebook_button:hover{
+		background: url(pics/facebook_hover.png);
+}
+
+#cart_button 
+{
+	left: 964px;
+	top: 8px;
+	width: 50px;
+	height: 42px;
+	
+	text-indent:-9999px;
+
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/cart_button.png) center top no-repeat;
+}
+
+#cart_button:hover{
+		background: url(pics/cart_button_hover.png);
+}
+
+#logo 
+{
+	left: 30px;
+	top: 41px;
+	width: 339px;
+	height: 334px;
+
+	position: absolute;
+	/*display: block;*/
+	background: url(pics/logo.png) center top no-repeat;
+}
+
+#logo:hover{
+		background: url(pics/logo_hover.png);
+}
+
+body {
+		/*background: url(pics/background_patch.png);*/
+		background-color: #292929;
+		display: absolute;
+		
+}
+
+#content_frame {
+	left: 360px;
+	top: 360px;
+	width: 664px;
+	height: 664px;
+
+	position: absolute;
+	border:none;
+	padding: 0;
+    margin: 0;
+}
+
+#site {
+/*
+		position: absolute;
+		left:50%;
+		margin-left:-20px;
+		width:1024px;
+		height:1024px;
+		background: url(pics/background.png)
+		display: block; background: url(pics/main_background.jpg) center top no-repeat;
+		*/
+		
+		position: absolute;
+		margin-left: auto;
+		margin-right: auto;
+		left: 0;
+		right: 0;
+		width:1024px;
+		height:1024px;
+		background: url(pics/main_background.jpg) center top no-repeat;
+}
+
+input[type="text"] {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 22px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+
+#searchBox  {
+  padding: 10px;
+  position: absolute;
+  	left: 66px;
+	top: 744px;
+	width: 250px;
+	height: 40px;
+  border: solid 1px #666666;
+  background-color: #333333;
+  color: #AAAAAA;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+#searchBox:focus,
+#searchBox.focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
+.button
+{
+	width: 150px;
+	padding: 10px;
+	background-color: #FF8C00;
+	box-shadow: -8px 8px 10px 3px rgba(0,0,0,0.2);
+	font-weight:bold;
+	text-decoration:none;
+}
+/*
+#cover
+{
+	position:fixed;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.6);
+	z-index:5;
+	width:100%; height:100%; display:none;
+}
+*/
+#overlay
+{
+	position:fixed;
+	height:600px;
+	width:600px;
+	margin:0 auto;
+	/*position:relative;*/
+	z-index:10;
+	display:none;
+	background: url(pics/background.jpg) center top no-repeat;
+	no-repeat;
+	border:5px solid #9BBCB3;
+	border-radius:10px;
+	left:50%;
+	top:50%;
+	margin-left:-300px;
+	margin-top:-300px;
+} 
+#overlay:target, #overlay:target + #cover
+{
+	display:block;
+	opacity:2;
+}
+.cancel 
+{ 
+	display:block;
+	position:absolute;
+	top:3px;
+	right:2px;
+	/*background:rgb(245,245,245);*/
+	color:#666666;
+	height:30px;
+	width:35px;
+	font-size:30px;
+	text-decoration:none;
+	text-align:center;
+	font-weight:bold;
+}
+
+#overlay_frame
+{
+	width:96%;
+	height:96%;
+	padding: 0px 10px 10px 10px;
+}
+
+
+
+
+
+
+
+.med_frame_outer
+{
+position:relative;
+	background: url(pics/frame_med.png) top no-repeat;
+	width:296px;
+	height:224px;
+	padding: 0px 0px 20px 0px; 
+}
+.med_frame_inner
+{
+	position:relative;
+	width:250px;
+	height:195px;
+	top:15px;
+	left:24px;
+}
+
+.small_frame_outer
+{
+position:relative;
+	background: url(pics/frame_small.png) top no-repeat;
+	width:116px;
+	height:195px;
+	padding: 0px 0px 20px 0px; 
+}
+.small_frame_inner
+{
+	position:relative;
+	width:95px;
+	height:175px;
+	top:10px;
+	left:10px;
+}
+
+
+#col1of2
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:0;
+ //width:;
+}
+
+#col2of2
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:330px;
+ //width:50vw;
+}
+
+#col5of5
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:504px;
+ //width:20vw;
+}
+
+#col4of5
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:378px;
+ //width:20vw;
+}
+
+#col3of5
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:252px;
+ //width:20vw;
+}
+
+#col2of5
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:126px;
+ //width:20vw;
+}
+
+#col1of5
+{
+ position:absolute;
+ padding: 20px 20px 20px 20px; 
+ top:0;
+ left:0;
+ //width:20vw;
+}
+
+#columns
+{
+	position:relative;
+}
+
+
+#content_frame.a
+{
+	display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+</style>
+
+<script type="text/javascript">
+
+	var stock =
+	{
+		"1":{id:"1", type: "jewellery", name: "bannana!", price:23.22, description: "this is a description", isNew: true},
+		"2":{id:"2", type: "jewellery", name: "apple", price:1.00, description: "yummy in my tummy!", isNew: false},
+		"3":{id:"3", type: "jewellery", name: "rock", price:55.00, description: "do not eat", isNew: false},
+		"4":{id:"4", type: "ornament", name: "ornament 1", price:23.22, description: "this is a description", isNew: true},
+		"5":{id:"5", type: "ornament", name: "ornament 2", price:1.00, description: "yummy in my tummy!", isNew: false},
+		"6":{id:"6", type: "ornament", name: "ornament 3", price:23.22, description: "this is a description", isNew: true},
+		"7":{id:"7", type: "ornament", name: "ornament 4", price:1.00, description: "yummy in my tummy!", isNew: false},
+		"8":{id:"8", type: "ornament", name: "ornament 5", price:55.00, description: "do not eat", isNew: false},
+		"9":{id:"9", type: "ornament", name: "ornament 6", price:55.00, description: "do not eat", isNew: false},
+		"11":{id:"11", type: "jewellery", name: "bannana!", price:23.22, description: "this is a description", isNew: true},
+		"12":{id:"12", type: "jewellery", name: "apple", price:1.00, description: "yummy in my tummy!", isNew: false},
+		"13":{id:"13", type: "jewellery", name: "rock", price:55.00, description: "do not eat", isNew: false},
+		"14":{id:"14", type: "ornament", name: "ornament 1", price:23.22, description: "this is a description", isNew: true},
+		"15":{id:"15", type: "ornament", name: "ornament 2", price:1.00, description: "yummy in my tummy!", isNew: false},
+		"16":{id:"16", type: "ornament", name: "ornament 3", price:23.22, description: "this is a description", isNew: true},
+		"17":{id:"17", type: "ornament", name: "ornament 4", price:1.00, description: "yummy in my tummy!", isNew: false},
+		"18":{id:"18", type: "ornament", name: "ornament 5", price:55.00, description: "do not eat", isNew: false},
+		"19":{id:"19", type: "ornament", name: "ornament 6", price:55.00, description: "do not eat", isNew: false},
+	}
+
+	function generateOrnamentsHTML()
+	{
+		var html = 	'<div id="columns">\n';
+		
+		for (j=1;j<=5;j++)
+		{
+			html += '	<div id="col'+j+'of5">\n';
+						
+			var i = 0;
+			var items = [];
+			for (var key in stock) 
+			{
+				if (stock[key].type=="ornament") items.push(stock[key]);
+			}
+				
+			for (i = 0;i<items.length;i++)
+			{
+				if (i%5==j-1)
+				{
+					html += '		<div class="small_frame_outer"><div class="small_frame_inner"><a href="#" OnClick="showOverlayFrame();changeOverlayFrame(generateItemHTML(\''+items[i].id+'\'))"><img src="pics/item/small/'+items[i].id+'.jpg"></img></a></div></div>\n';
+				}
+			}
+			
+			html += '	</div> \n';
+		}
+		
+		html += '</div> \n';
+		
+		return html;
+	}
+	
+	function generateJewelleryHTML()
+	{
+		var html = 	'<div id="columns">\n' +
+					'	<div id="col1of2">\n';
+					
+		var i = 0;
+		var items = [];
+		for (var key in stock) 
+		{
+			if (stock[key].type=="jewellery") items.push(stock[key]);
+		}
+		
+		
+		for (i = 0;i<items.length/2;i++)
+		{
+			html += '		<div class="med_frame_outer"><div class="med_frame_inner"><a href="#" OnClick="showOverlayFrame();changeOverlayFrame(generateItemHTML(\''+items[i].id+'\'))"><img src="pics/item/small/'+items[i].id+'.jpg"></img></a></div></div>\n';
+		}
+		
+		html += '	</div> \n' +
+				'	<div id="col2of2"> \n';
+		
+		for (;i<items.length;i++)
+		{
+			html += '		<div class="med_frame_outer"><div class="med_frame_inner"><a href="#" OnClick="showOverlayFrame();changeOverlayFrame(generateItemHTML(\''+items[i].id+'\'))"><img src="pics/item/small/'+items[i].id+'.jpg"></img></a></div></div>\n';
+		}
+		
+		html += '	</div> \n' +
+				'</div> \n';
+		
+		return html;
+	}
+
+	function generateItemHTML(itemId)
+	{
+		var item =stock[itemId];
+		return "<h1>"+item.name+"</h1><br/></br>"+item.description;
+	}
+	
+	function changeContentFrame(html)
+	{
+		document.getElementById("content_frame").innerHTML = html;
+	}
+	
+	function changeOverlayFrame(html)
+	{
+		document.getElementById("overlay_frame").innerHTML = html;
+	}
+	
+	function showOverlayFrame()
+	{
+		document.getElementById('overlay').style.display = 'block';
+	}
+</script>
+
+</head>
+<body>
+	<div id="site">
+		<a id="logo" href="index.html"></a>
+		<a id="ornament_button" OnClick="changeContentFrame(generateOrnamentsHTML());"></a>
+		<a id="jewellery_button" OnClick="changeContentFrame(generateJewelleryHTML());"</a>
+		<a id="facebook_button" href="*FACEBOOK*"/></a>
+		<a id="etsy_button" href="*ETSY*"></a>
+		<a id="email_button" href="*EMAIL*"></a>
+<!--		<a id="cart_button" href="*CART*"/></a>-->
+		<input id="searchBox" type="text" ></input>
+		<div id="overlay">
+			<a href="#" class="cancel" OnClick="document.getElementById('overlay').style.display = 'none';">&times;</a>
+			<div id="overlay_frame" ></div>
+		</div>
+		<div id="cover"> </div>
+		
+		<form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="get" >
+			<input type="hidden" name="cmd" value="_s-xclick">
+			<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+			">
+			<input id="cart_button" type="image" src="pics/transparentPixel.png" name="submit" alt="">
+			<img alt="" border="0" src="https://www.sandbox.paypal.com/en_AU/i/scr/pixel.gif" width="1" height="1">
+		</form>
+		
+<!--		<a href="#overlay" class="button">Click here to Log In</a>-->
+		<!--<iframe id="content_frame" name="content_frame"/> </iframe>-->
+		<div id="content_frame"></div>
+		
+	</div>
+</body>
+</html>
